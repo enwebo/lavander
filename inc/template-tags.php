@@ -188,8 +188,8 @@ function lavander_do_svg( $args = array() ) {
  *
  * @param  array  $args  Parameters needed to display an SVG.
  */
-function lavander_get_logo( $args = array() ) {
-	echo lavander_get_svg( $args );
+function lavander_display_logo() {
+	echo lavander_get_svg( array( 'icon' => 'bars', 'title' => 'ceva' ) );
 }
 
 /**
