@@ -3,7 +3,7 @@
  *
  * Mobile Navigation Menu
  */
-window.wdsMobileNav = {};
+window.lavanderMobileNav = {};
 ( function ( window, $, app ) {
 	// Constructor
 	app.init = function () {
@@ -113,4 +113,4 @@ window.wdsMobileNav = {};
 
 	// Engage
 	$( app.init );
-} )( window, jQuery, window.wdsMobileNav );
+} )( window, jQuery, window.lavanderMobileNav );
