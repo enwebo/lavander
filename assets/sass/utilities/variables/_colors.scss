@@ -15,12 +15,14 @@
 
 // Primary palette
 $color-blue: #21759b;
+$color-green: #a0be88;
 $color-light-yellow: #fff9c0;
 $color-black: #000000;
 $color-white: #ffffff;
 
 // Grayscale
-$color-gray: #808080;
+$color-gray: #808580;
+$color-asparagus-gray: #4b534b;
 $color-cod-gray: #111111;
 $color-mineshaft: #333333;
 $color-dove-gray: #666666;
@@ -65,15 +67,15 @@ $social-colors: (
 
 // General
 $color-background-body: $color-white;
-$color-text-main: $color-cod-gray;
+$color-text-main: $color-asparagus-gray;
 $color-background-hr: $color-silver;
 $color-border-abbr: $color-dove-gray;
 
 // Accessibility
 $color-background-screen-reader: $color-whitesmoke;
-$color-text-screen-reader: $color-blue;
+$color-text-screen-reader: $color-gray;
 
 // Links
-$color-link: $color-blue;
-$color-link-visited: $color-blue;
-$color-link-hover: $color-blue;
+$color-link: $color-gray;
+$color-link-visited: $color-gray;
+$color-link-hover: $color-gray;

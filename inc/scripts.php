@@ -19,18 +19,18 @@ function lavander_font_url() {
 	 * supported by the following, translate this to 'off'. Do not translate
 	 * into your own language.
 	 */
-	$roboto = _x( 'on', 'Roboto font: on or off', 'lavander' );
-	$open_sans = _x( 'on', 'Open Sans font: on or off', 'lavander' );
+	$roboto = _x( 'on', 'Raleway font: on or off', 'lavander' );
+	$pt_sans = _x( 'on', 'PT Sans font: on or off', 'lavander' );
 
-	if ( 'off' !== $roboto || 'off' !== $open_sans ) {
+	if ( 'off' !== $roboto || 'off' !== $pt_sans ) {
 		$font_families = array();
 
 		if ( 'off' !== $roboto ) {
-			$font_families[] = 'Roboto:400,700';
+			$font_families[] = 'Raleway:400,700';
 		}
 
-		if ( 'off' !== $open_sans ) {
-			$font_families[] = 'Open Sans:400,300,700';
+		if ( 'off' !== $pt_sans ) {
+			$font_families[] = 'PT Sans:400,300,700';
 		}
 
 		$query_args = array(
