@@ -56,6 +56,10 @@
 				?>
 			</nav><!-- #site-navigation -->
 
+			<div class="site-socials header-socials">
+				<?php echo lavander_get_social_network_links(); ?>
+			</div><!-- .site-socials -->
+
 		</div><!-- .wrap -->
 	</header><!-- #masthead -->
 
