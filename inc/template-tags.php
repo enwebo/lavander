@@ -340,7 +340,7 @@ function lavander_get_attachment_id_from_url( $attachment_url = '' ) {
 	$attachment_id = false;
 
 	// If there is no url, return.
-	if ( '' == $attachment_url ) {
+	if ( '' === $attachment_url ) {
 		return false;
 	}
 
