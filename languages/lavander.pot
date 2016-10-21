@@ -101,12 +101,12 @@ msgid "The copyright text will be displayed beneath the menu in the footer."
 msgstr ""
 
 #: inc/scripts.php:22
-msgctxt "Roboto font: on or off"
+msgctxt "Raleway font: on or off"
 msgid "on"
 msgstr ""
 
 #: inc/scripts.php:23
-msgctxt "Open Sans font: on or off"
+msgctxt "PT Sans font: on or off"
 msgid "on"
 msgstr ""
 

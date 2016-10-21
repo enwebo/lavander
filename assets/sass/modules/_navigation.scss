@@ -20,9 +20,10 @@ a {
 // Default menu (active after a fresh WordPress install)
 .menu {
 	@include list-reset;
+	margin: 0 auto;
 
 	li {
-		margin: 0 rem(10) 0 0;
+		margin: 0;
 	} // li
 
 	ul {
@@ -33,11 +34,30 @@ a {
 		padding: rem(10) rem(20);
 	} // a
 
+	& > li:before {
+		@include size(0 rem(1));
+		background: $color-gray;
+		content: "";
+		left: 0;
+		margin: 0 auto;
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transition: width 0.3s ease;
+	}
+
+	& > .menu-item:hover:before,
+	& > .current-menu-item:before,
+	& > .menu-item:hover:before {
+	    width: 100%;
+	}
+
 	&.menu-horizontal {
 
 		li {
 			display: inline-block;
 		} // li
+
 	} // &.menu-horizontal
 
 	&.menu-vertical {
@@ -61,6 +81,7 @@ a {
 			box-shadow: 0 30px 30px rgba(0, 0, 0, 0.2);
 			float: left;
 			z-index: 99999;
+			background: $color-white;
 
 			// Sub-sub menu
 			ul {
@@ -89,6 +110,7 @@ a {
 
 			a:hover,
 			a.focus {
+				background: $color-whitesmoke;
 			} // a:hover, a.focus
 		} // ul
 
@@ -106,29 +128,12 @@ a {
 			&:hover > a,
 			&.focus > a {
 			} // &:hover > a, &.focus > a
+
+			& li:hover > a,
+			& li.focus > a {
+				background: $color-whitesmoke;
+			} // & li:hover > a, & li.focus > a
 		} // li
-
-		.menu-item a:before {
-			@include size(0 rem(1));
-			background: $color-gray;
-			content: "";
-			left: 0;
-			margin: 0 auto;
-			position: absolute;
-		    right: 0;
-			top: 50%;
-			transition: width .5s;
-		}
-
-		.menu-item a:hover:before {
-		    width: 100%;
-		}
-
-		.current-menu-item a:before,
-		.menu-item a:hover:before {
-		    width: 100%;
-		}
-
 
 	} // &.dropdown
 
@@ -149,7 +154,12 @@ a {
 	@include size(100% auto);
 
 	clear: both;
-	display: none;
+
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 	float: left;
 
 	// Menu area
@@ -166,7 +176,7 @@ a {
 	} // &.toggled ul
 
 	@include media($tablet-landscape) {
-		display: block;
+		display: flex;
 	}
 } // .main-navigation
 
