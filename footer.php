@@ -17,7 +17,7 @@
 		<div class="wrap">
 
 			<div class="site-info">
-				<?php echo lavander_get_copyright_text(); ?>
+				<?php lavander_get_copyright_text(); ?>
 			</div>
 
 		</div><!-- .wrap -->

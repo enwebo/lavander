@@ -139,7 +139,7 @@ function lavander_get_svg( $args = array() ) {
 		return esc_html__( 'Please define default parameters in the form of an array.', 'lavander' );
 	}
 
-	// YUNO define an icon?
+	// Define an icon.
 	if ( false === array_key_exists( 'icon', $args ) ) {
 		return esc_html__( 'Please define an SVG icon filename.', 'lavander' );
 	}
@@ -157,8 +157,18 @@ function lavander_get_svg( $args = array() ) {
 	// Figure out which title to use.
 	$title = ( $args['title'] ) ? $args['title'] : $args['icon'];
 
+	// Set aria hidden.
+	$aria_hidden = ' aria-hidden="true"';
+
+	// Set ARIA.
+	$aria_labelledby = '';
+	if ( $args['title'] && $args['desc'] ) {
+		$aria_labelledby = ' aria-labelledby="title-ID desc-ID"';
+		$aria_hidden = '';
+	}
+
 	// Begin SVG markup.
-	$svg = '<svg class="icon icon-' . esc_html( $args['icon'] ) . '" aria-hidden="true">';
+	$svg = '<svg class="icon icon-' . esc_attr( $args['icon'] ) . '"' . $aria_hidden . $aria_labelledby . ' role="img">';
 
 	// Add title markup.
 	$svg .= '<title>' . esc_html( $title ) . '</title>';
@@ -168,19 +178,16 @@ function lavander_get_svg( $args = array() ) {
 		$svg .= '<desc>' . esc_html( $args['desc'] ) . '</desc>';
 	}
 
-	$svg .= '<use xlink:href="#icon-' . esc_html( $args['icon'] ) . '"></use>';
+	// Use absolute path in the Customizer so that icons show up in there.
+	if ( is_customize_preview() ) {
+		$svg .= '<use xlink:href="' . get_parent_theme_file_uri( '/assets/images/svg-icons.svg#icon-' . esc_html( $args['icon'] ) ) . '"></use>';
+	} else {
+		$svg .= '<use xlink:href="#icon-' . esc_html( $args['icon'] ) . '"></use>';
+	}
+
 	$svg .= '</svg>';
 
 	return $svg;
-}
-
-/**
- * Display an SVG.
- *
- * @param  array  $args  Parameters needed to display an SVG.
- */
-function lavander_do_svg( $args = array() ) {
-	echo lavander_get_svg( $args );
 }
 
 /**
@@ -393,19 +400,19 @@ function lavander_get_social_share() {
 		<ul class="social-icons menu menu-horizontal">
 			<li class="social-icon">
 				<a href="<?php echo esc_url( $twitter_url ); ?>" onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=150, left=0, width=600, height=300' ); return false;">
-					<?php lavander_do_svg( array( 'icon' => 'twitter-square', 'title' => 'Twitter', 'desc' => __( 'Share on Twitter', 'lavander' ) ) ); ?>
+					<?php echo lavander_get_svg( array( 'icon' => 'twitter-square', 'title' => 'Twitter', 'desc' => __( 'Share on Twitter', 'lavander' ) ) ); ?>
 					<span class="screen-reader-text"><?php esc_html_e( 'Share on Twitter', 'lavander' ); ?></span>
 				</a>
 			</li>
 			<li class="social-icon">
 				<a href="<?php echo esc_url( $facebook_url ); ?>" onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=150, left=0, width=600, height=300' ); return false;">
-					<?php lavander_do_svg( array( 'icon' => 'facebook-square', 'title' => 'Facebook', 'desc' => __( 'Share on Facebook', 'lavander' ) ) ); ?>
+					<?php echo lavander_get_svg( array( 'icon' => 'facebook-square', 'title' => 'Facebook', 'desc' => __( 'Share on Facebook', 'lavander' ) ) ); ?>
 					<span class="screen-reader-text"><?php esc_html_e( 'Share on Facebook', 'lavander' ); ?></span>
 				</a>
 			</li>
 			<li class="social-icon">
 				<a href="<?php echo esc_url( $linkedin_url ); ?>" onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=150, left=0, width=475, height=505' ); return false;">
-					<?php lavander_do_svg( array( 'icon' => 'linkedin-square', 'title' => 'LinkedIn', 'desc' => __( 'Share on LinkedIn', 'lavander' ) ) ); ?>
+					<?php echo lavander_get_svg( array( 'icon' => 'linkedin-square', 'title' => 'LinkedIn', 'desc' => __( 'Share on LinkedIn', 'lavander' ) ) ); ?>
 					<span class="screen-reader-text"><?php esc_html_e( 'Share on LinkedIn', 'lavander' ); ?></span>
 				</a>
 			</li>
@@ -429,7 +436,7 @@ function lavander_get_mobile_navigation_menu() {
 	?>
 
 	<nav id="mobile-menu" class="mobile-nav-menu">
-		<button class="close-mobile-menu"><span class="screen-reader-text"><?php _e( 'Close menu', 'lavander' ); ?></span><?php lavander_do_svg( array( 'icon' => 'close' ) ); ?></button>
+		<button class="close-mobile-menu"><span class="screen-reader-text"><?php esc_html_e( 'Close menu', 'lavander' ); ?></span><?php echo lavander_get_svg( array( 'icon' => 'close' ) ); ?></button>
 		<?php
 			wp_nav_menu( array(
 				'theme_location' => $mobile_menu,
@@ -446,42 +453,41 @@ function lavander_get_mobile_navigation_menu() {
 
 /**
  * Retrieve the social links saved in the customizer
- * @return mixed HTML output of social links
  *
- * @author Corey Collins
+ * @return mixed HTML output of social links
  */
 function lavander_get_social_network_links() {
 
 	// Create an array of our social links for ease of setup.
 	// Change the order of the networks in this array to change the output order
-    $social_networks = array( 'facebook', 'googleplus', 'instagram', 'linkedin', 'twitter' );
+	$social_networks = array( 'facebook', 'googleplus', 'instagram', 'linkedin', 'twitter' );
 
-    // Kickoff our output buffer
+	// Kickoff our output buffer
 	ob_start(); ?>
 
 	<ul class="social-icons">
 	<?php
 	// Loop through our network array
-	foreach( $social_networks as $network ) :
+	foreach ( $social_networks as $network ) :
 
 		// Look for the social network's URL
 		$network_url = get_theme_mod( 'lavander_' . $network . '_link' );
 
 		// Only display the list item if a URL is set
-		if ( isset( $network_url ) && ! empty ( $network_url ) ) : ?>
+		if ( isset( $network_url ) && ! empty( $network_url ) ) : ?>
 			<li class="social-icon <?php esc_attr_e( $network ); ?>">
 				<a href="<?php echo esc_url( $network_url ); ?>">
-					<?php lavander_do_svg( array(
+					<?php echo lavander_get_svg( array(
 						'icon'  => $network . '-square',
-						'title' => sprintf( __( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) )
+						'title' => sprintf( esc_html__( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) ),
 					) ); ?>
-					<span class="screen-reader-text"><?php echo sprintf( __( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) ); ?></span>
+					<span class="screen-reader-text"><?php echo sprintf( esc_html__( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) ); ?></span>
 				</a>
 			</li><!-- .social-icon -->
 		<?php endif;
 	endforeach; ?>
 	</ul><!-- .social-icons -->
 
-	<?php // Return everything inside our output buffer
+	<?php
 	return ob_get_clean();
 }

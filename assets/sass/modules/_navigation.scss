@@ -31,12 +31,20 @@ a {
 	} // ul
 
 	a {
-		padding: rem(10) rem(20);
+		color: $menu-link-color;
+		font-size: $menu-font-size;
+		font-weight: 500;
+		letter-spacing: rem(4);
+		padding: rem(10) rem(29);
 	} // a
+
+	& > li {
+		margin: 0 rem(5);
+	}
 
 	& > li:before {
 		@include size(0 rem(1));
-		background: $color-gray;
+		background: $menu-link-color;
 		content: "";
 		left: 0;
 		margin: 0 auto;
@@ -76,18 +84,18 @@ a {
 
 		// Sub-menu
 		ul {
-			@include position(absolute, rem(46) null null -999em);
+			@include position(absolute, 2.5 null null -999em);
 
+			background: $color-white;
 			box-shadow: 0 30px 30px rgba(0, 0, 0, 0.2);
 			float: left;
 			z-index: 99999;
-			background: $color-white;
 
 			// Sub-sub menu
 			ul {
+				background: $color-white;
 				left: -999em;
 				top: 0;
-				background: $color-white;
 			} // ul
 
 			// Sub-menu items
@@ -110,7 +118,7 @@ a {
 
 			a:hover,
 			a.focus {
-				background: $color-whitesmoke;
+				background: $menu-hover-bg-color;
 			} // a:hover, a.focus
 		} // ul
 
@@ -131,7 +139,7 @@ a {
 
 			& li:hover > a,
 			& li.focus > a {
-				background: $color-whitesmoke;
+				background: $menu-hover-bg-color;
 			} // & li:hover > a, & li.focus > a
 		} // li
 
@@ -152,15 +160,13 @@ a {
 // Main navigation (after creating a menu in the dashboard)
 .main-navigation {
 	@include size(100% auto);
-
+	align-items: center;
 	clear: both;
-
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
 	float: left;
+	justify-content: center;
 
 	// Menu area
 	ul {
