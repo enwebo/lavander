@@ -12,3 +12,30 @@
 	font-size: rem(24);
 	margin: 0 0 rem(24) 0;
 } // .site-description
+
+// Site Logo
+.site-logo {
+	align-items: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+	margin-bottom: rem(200);
+	padding-top: rem(40);
+
+	img {
+		max-width: rem(220);
+
+	}
+} // .site-logo
+
+.site-header {
+	box-shadow: 0 0 rem(60) 0 rgba(75, 83, 75, 0.5);
+	margin-left: rem(50);
+	margin-right: rem(50);
+	padding-bottom: rem(40);
+	padding-top: rem(40);
+
+}

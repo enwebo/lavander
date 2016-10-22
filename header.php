@@ -30,36 +30,40 @@
 
 	<header class="site-header">
 		<div class="wrap">
-			<div class="site-logo">
-				<?php lavander_display_logo(); ?>
-			</div>
-			<div class="site-branding">
-				<?php if ( is_front_page() && is_home() ) : ?>
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php else : ?>
-					<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php endif;
+			<div class="header-content">
 
-				$description = get_bloginfo( 'description', 'display' );
-				if ( $description || is_customize_preview() ) : ?>
-					<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
-				<?php endif; ?>
-			</div><!-- .site-branding -->
+				<div class="site-logo">
+					<?php lavander_display_logo(); ?>
+				</div>
+				
+				<div class="site-branding">
+					<?php if ( is_front_page() && is_home() ) : ?>
+						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+					<?php else : ?>
+						<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+					<?php endif;
 
-			<nav id="site-navigation" class="main-navigation">
-				<?php
-					wp_nav_menu( array(
-						'theme_location' => 'primary',
-						'menu_id'        => 'primary-menu',
-						'menu_class'     => 'menu dropdown center',
-					) );
-				?>
-			</nav><!-- #site-navigation -->
+					$description = get_bloginfo( 'description', 'display' );
+					if ( $description || is_customize_preview() ) : ?>
+						<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>
+					<?php endif; ?>
+				</div><!-- .site-branding -->
 
-			<div class="site-socials header-socials">
-				<?php echo lavander_get_social_network_links(); ?>
-			</div><!-- .site-socials -->
+				<nav id="site-navigation" class="main-navigation">
+					<?php
+						wp_nav_menu( array(
+							'theme_location' => 'primary',
+							'menu_id'        => 'primary-menu',
+							'menu_class'     => 'menu dropdown center',
+						) );
+					?>
+				</nav><!-- #site-navigation -->
 
+				<div class="site-socials header-socials">
+					<?php echo lavander_get_social_network_links(); ?>
+				</div><!-- .site-socials -->
+
+			</div><!-- .header-content -->
 		</div><!-- .wrap -->
 	</header><!-- #masthead -->
 

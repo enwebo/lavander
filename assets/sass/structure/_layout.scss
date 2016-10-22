@@ -17,7 +17,7 @@
 .site-footer {
 
 	@include media($tablet-landscape) {
-		padding: 0 2 * $gutter;
+		padding: 2 * $gutter 2 * $gutter;
 	}
 } // .site-header, .site-footer
 

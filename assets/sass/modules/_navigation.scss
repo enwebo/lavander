@@ -103,7 +103,7 @@ a {
 
 				&:hover > ul,
 				&.focus > ul {
-					left: 100%;
+					left: 95%;
 				} // &:hover > ul, &.focus > ul
 			} // li
 
@@ -147,6 +147,7 @@ a {
 
 	// Menu hyperlinks
 	a {
+		cursor: pointer;
 		display: block;
 		text-decoration: none;
 	} // a
