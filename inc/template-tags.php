@@ -192,11 +192,13 @@ function lavander_get_svg( $args = array() ) {
 
 /**
  * Display logo.
- *
- * @param  array  $args  Parameters needed to display an SVG.
  */
 function lavander_display_logo() {
-	echo lavander_get_svg( array( 'icon' => 'bars', 'title' => 'ceva' ) );
+
+	if ( function_exists( 'the_custom_logo' ) ) {
+		the_custom_logo();
+	}
+
 }
 
 /**

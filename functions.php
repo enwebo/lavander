@@ -68,6 +68,15 @@ function lavander_setup() {
 		'default-image' => '',
 	) ) );
 
+	// Set up the Wordpress Theme logo feature.
+	add_theme_support( 'custom-logo', apply_filters( 'lavander_custom_logo_args', array(
+		'height'      => 50,
+		'width'       => 100,
+		'flex-height' => true,
+		'flex-width'  => true,
+		'header-text' => array( 'site-title', 'site-description' ),
+	) ) );
+
 }
 endif; // lavander_setup
 add_action( 'after_setup_theme', 'lavander_setup' );
