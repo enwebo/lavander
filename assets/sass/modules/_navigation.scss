@@ -86,7 +86,7 @@ a {
 			@include position(absolute, 2.5 null null -999em);
 
 			background: $color-white;
-			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+			box-shadow: 0 10px 30px rgba($color-black, 0.2);
 			float: left;
 			z-index: 99999;
 
