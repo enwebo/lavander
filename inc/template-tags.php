@@ -479,10 +479,16 @@ function lavander_get_social_network_links() {
 		if ( isset( $network_url ) && ! empty( $network_url ) ) : ?>
 			<li class="social-icon <?php esc_attr_e( $network ); ?>">
 				<a href="<?php echo esc_url( $network_url ); ?>">
-					<?php echo lavander_get_svg( array(
-						'icon'  => $network . '-square',
-						'title' => sprintf( esc_html__( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) ),
-					) ); ?>
+					<?php
+
+					// echo lavander_get_svg( array(
+					// 	'icon'  => $network . '-square',
+					// 	'title' => sprintf( esc_html__( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) ),
+					// ) );
+
+					echo '<i class="fa fa-' . $network . '" aria-hidden="true"></i>';
+
+					?>
 					<span class="screen-reader-text"><?php echo sprintf( esc_html__( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) ); ?></span>
 				</a>
 			</li><!-- .social-icon -->
