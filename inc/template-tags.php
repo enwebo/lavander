@@ -478,7 +478,7 @@ function lavander_get_social_network_links() {
 		// Only display the list item if a URL is set
 		if ( isset( $network_url ) && ! empty( $network_url ) ) : ?>
 			<li class="social-icon <?php esc_attr_e( $network ); ?>">
-				<a href="<?php echo esc_url( $network_url ); ?>">
+				<a href="<?php echo esc_url( $network_url ); ?>" class="icon-<?php echo $network; ?>">
 					<?php
 
 					// echo lavander_get_svg( array(

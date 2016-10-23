@@ -16,15 +16,26 @@
 
 			// Set styles on those social icons!
 			.icon-#{$social-color} {
-				@include size(rem(30) rem(30));
+				@include size(rem(16) rem(16));
 
-				fill: $color;
-
-				&:hover {
-					fill: lighten($color, 20%);
+				&:hover i {
+					color: $color;
 				} // &:hover
 			} // .icon-#{$social-color}
+
 		} // end each loop
+
+		// Add more space to anchors
+		a {
+			color: $color-asparagus-gray;
+			cursor: pointer;
+			padding: rem(15);
+			text-align: center;
+
+			i {
+				@include size(1rem);
+			}
+		}
 
 		// No margin for the last <li> item
 		&:last-child {

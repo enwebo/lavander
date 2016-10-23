@@ -20,7 +20,6 @@ a {
 // Default menu (active after a fresh WordPress install)
 .menu {
 	@include list-reset;
-	margin: 0 auto;
 
 	li {
 		margin: 0;
@@ -87,7 +86,7 @@ a {
 			@include position(absolute, 2.5 null null -999em);
 
 			background: $color-white;
-			box-shadow: 0 30px 30px rgba(0, 0, 0, 0.2);
+			box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 			float: left;
 			z-index: 99999;
 
@@ -166,8 +165,8 @@ a {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
-	float: left;
 	justify-content: center;
+	margin: 0 auto;
 
 	// Menu area
 	ul {

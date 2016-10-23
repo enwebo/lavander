@@ -39,3 +39,13 @@
 	padding-top: rem(40);
 
 }
+
+.header-socials {
+	align-items: center;
+	clear: both;
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+	margin: rem(120) auto rem(40);
+}
