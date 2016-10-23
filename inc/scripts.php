@@ -69,6 +69,10 @@ function lavander_scripts() {
 	wp_enqueue_style( 'lavander-google-font' );
 	wp_enqueue_style( 'lavander-style', get_stylesheet_directory_uri() . '/style' . $suffix . '.css', array(), $version );
 
+	if ( class_exists( 'LoginWithAjax' ) ) {
+		wp_enqueue_style( 'lavander-login-with-ajax', get_template_directory_uri() . '/assets/css/login-with-ajax' . $suffix . '.css', array(), $version );
+	}
+
 	// Enqueue scripts.
 	wp_enqueue_script( 'lavander-scripts', get_template_directory_uri() . '/assets/scripts/project' . $suffix . '.js', array( 'jquery' ), $version, true );
 

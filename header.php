@@ -32,10 +32,14 @@
 		<div class="wrap">
 			<div class="header-content">
 
+				<div class="site-actions">
+					<?php echo lavander_lwa(); ?>
+				</div>
+
 				<div class="site-logo">
 					<?php lavander_display_logo(); ?>
 				</div>
-				
+
 				<div class="site-branding">
 					<?php if ( is_front_page() && is_home() ) : ?>
 						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
