@@ -32,12 +32,16 @@
 } // .site-logo
 
 .site-header {
-	box-shadow: 0 0 rem(60) 0 rgba($color-asparagus-gray, 0.5);
 	margin-left: rem(50);
 	margin-right: rem(50);
 	padding-bottom: rem(40);
 	padding-top: rem(40);
 
+}
+
+.header-content {
+    box-shadow: 0 0 rem(60) 0 rgba($color-asparagus-gray, 0.5);
+    max-width: 20em;
 }
 
 .header-socials {

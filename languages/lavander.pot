@@ -56,19 +56,19 @@ msgstr ""
 msgid "Optional Mobile Menu"
 msgstr ""
 
-#: functions.php:96
+#: functions.php:105
 msgid "Sidebar 1"
 msgstr ""
 
-#: functions.php:97
+#: functions.php:106
 msgid "Sidebar 2"
 msgstr ""
 
-#: functions.php:98
+#: functions.php:107
 msgid "Sidebar 3"
 msgstr ""
 
-#: functions.php:106
+#: functions.php:115
 msgid "Widget area for %s"
 msgstr ""
 
@@ -156,35 +156,35 @@ msgstr ""
 msgid "Please define an SVG icon filename."
 msgstr ""
 
-#: inc/template-tags.php:220
+#: inc/template-tags.php:229
 msgid "Read More"
 msgstr ""
 
-#: inc/template-tags.php:231
+#: inc/template-tags.php:240
 msgid "Read more..."
 msgstr ""
 
-#: inc/template-tags.php:392
+#: inc/template-tags.php:401
 msgid "Share This"
 msgstr ""
 
-#: inc/template-tags.php:396, inc/template-tags.php:397
+#: inc/template-tags.php:405, inc/template-tags.php:406
 msgid "Share on Twitter"
 msgstr ""
 
-#: inc/template-tags.php:402, inc/template-tags.php:403
+#: inc/template-tags.php:411, inc/template-tags.php:412
 msgid "Share on Facebook"
 msgstr ""
 
-#: inc/template-tags.php:408, inc/template-tags.php:409
+#: inc/template-tags.php:417, inc/template-tags.php:418
 msgid "Share on LinkedIn"
 msgstr ""
 
-#: inc/template-tags.php:432
+#: inc/template-tags.php:441
 msgid "Close menu"
 msgstr ""
 
-#: inc/template-tags.php:476, inc/template-tags.php:478
+#: inc/template-tags.php:486, inc/template-tags.php:492
 msgid "Link to %s"
 msgstr ""
 

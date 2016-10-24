@@ -7,13 +7,12 @@
  */
 
 function lavander_lwa() {
-	//double check just to be sure
 	if ( lavander_using_lwa() ) {
 		$atts = array(
 			'profile_link' => true,
-			'template'     => 'modal',
+			'template'     => 'divs-only',
 			'registration' => true,
-			'redirect'     => false,
+			'redirect'     => true,
 			'remember'     => true
 		);
 
