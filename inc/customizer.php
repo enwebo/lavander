@@ -16,26 +16,26 @@ function lavander_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 
 	// Add our social link options.
-    $wp_customize->add_section(
-        'lavander_social_links_section',
-        array(
-            'title'       => esc_html__( 'Social Links', 'lavander' ),
-            'description' => esc_html__( 'These are the settings for social links. Please limit the number of social links to 5.', 'lavander' ),
-            'priority'    => 90,
-        )
-    );
+	$wp_customize->add_section(
+		'lavander_social_links_section',
+		array(
+			'title'       => esc_html__( 'Social Links', 'lavander' ),
+			'description' => esc_html__( 'These are the settings for social links. Please limit the number of social links to 5.', 'lavander' ),
+			'priority'    => 90,
+		)
+	);
 
-    // Create an array of our social links for ease of setup.
-    $social_networks = array( 'facebook', 'googleplus', 'instagram', 'linkedin', 'twitter' );
+	// Create an array of our social links for ease of setup.
+	$social_networks = array( 'facebook', 'google-plus', 'instagram', 'linkedin', 'twitter' );
 
-    // Loop through our networks to setup our fields.
-    foreach( $social_networks as $network ) {
+	// Loop through our networks to setup our fields.
+	foreach ( $social_networks as $network ) {
 
 	    $wp_customize->add_setting(
 	        'lavander_' . $network . '_link',
 	        array(
 	            'default' => '',
-	            'sanitize_callback' => 'lavander_sanitize_customizer_url'
+	            'sanitize_callback' => 'lavander_sanitize_customizer_url',
 	        )
 	    );
 	    $wp_customize->add_control(
@@ -46,7 +46,7 @@ function lavander_customize_register( $wp_customize ) {
 	            'type'    => 'text',
 	        )
 	    );
-    }
+	}
 
     // Add our Footer Customization section section.
     $wp_customize->add_section(

@@ -462,7 +462,7 @@ function lavander_get_social_network_links() {
 
 	// Create an array of our social links for ease of setup.
 	// Change the order of the networks in this array to change the output order
-	$social_networks = array( 'facebook', 'googleplus', 'instagram', 'linkedin', 'twitter' );
+	$social_networks = array( 'facebook', 'google-plus', 'instagram', 'linkedin', 'twitter' );
 
 	// Kickoff our output buffer
 	ob_start(); ?>
