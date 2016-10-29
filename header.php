@@ -72,6 +72,11 @@
 				</div><!-- .site-socials -->
 
 			</div><!-- .header-content -->
+
+			<div class="header-image">
+				<?php lavander_get_header_image(); ?>
+			</div><!-- .header-image -->
+
 		</div><!-- .wrap -->
 	</header><!-- #masthead -->
 

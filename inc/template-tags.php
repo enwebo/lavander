@@ -369,6 +369,23 @@ function lavander_get_attachment_id_from_url( $attachment_url = '' ) {
 /**
  * Echo the copyright text saved in the Customizer.
  */
+function lavander_get_header_image() {
+
+	// Grab our customizer settings.
+	// $header_image = get_theme_mod( 'lavander_header_image' );
+
+	// Stop if there's nothing to display.
+	// if ( ! $header_image ) {
+	// 	return false;
+	// }
+
+	// Echo the text.
+	echo '<div class="header-image-container">' . lavander_get_post_image( 'full' ) . '</div>';
+}
+
+/**
+ * Echo the copyright text saved in the Customizer.
+ */
 function lavander_get_copyright_text() {
 
 	// Grab our customizer settings.

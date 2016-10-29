@@ -40,6 +40,17 @@
 .header-content {
     box-shadow: 0 0 rem(60) 0 rgba($color-asparagus-gray, 0.5);
     max-width: 20em;
+	float: left;
+}
+
+.header-image {
+	padding-left: 20rem;
+    width: 100%;
+}
+
+.header-image img {
+	height: auto;
+    width: 100%;
 }
 
 .header-socials {
