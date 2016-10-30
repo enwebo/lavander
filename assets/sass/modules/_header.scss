@@ -32,8 +32,9 @@
 } // .site-logo
 
 .site-header {
-	padding-bottom: rem(40);
-	padding-top: rem(40);
+	.wrap {
+		max-width: 80rem;
+	}
 
 }
 
