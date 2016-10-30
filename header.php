@@ -33,11 +33,7 @@
 			<div class="header-content">
 
 				<div class="site-actions">
-					<?php
-						if ( lavander_using_lwa() ) {
-							lavander_lwa();
-						}
-					?>
+					<?php lavander_display_lwa_forms(); ?>
 				</div>
 
 				<div class="site-logo">

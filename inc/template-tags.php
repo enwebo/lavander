@@ -516,3 +516,19 @@ function lavander_get_social_network_links() {
 	<?php
 	return ob_get_clean();
 }
+
+/**
+ * Show Login With Ajax forms.
+ *
+ * @return mixed HTML output of lwa
+ */
+function lavander_display_lwa_forms() {
+
+	// Stop if plugin isn't activated.
+	if ( ! lavander_using_lwa() ) {
+		return false;
+	}
+
+	echo lavander_lwa();
+
+}
