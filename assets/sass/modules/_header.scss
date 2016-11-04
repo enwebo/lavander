@@ -33,19 +33,21 @@
 
 .site-header {
 	.wrap {
-		max-width: 80rem;
+		width: 100%;
+		max-width: $desktop;
 	}
 
 }
 
 .header-content {
     box-shadow: 0 0 rem(60) 0 rgba($color-asparagus-gray, 0.5);
-    max-width: 20em;
 	float: left;
+    max-width: $desktop / 12 * 2;
+	padding: rem(20);
 }
 
 .header-image {
-	padding-left: 20rem;
+	padding-left: $desktop / 12 * 2;
     width: 100%;
 
 	img {

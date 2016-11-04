@@ -9,7 +9,7 @@
 	padding: 0 2 * $gutter;
 
 	@include media($desktop) {
-		padding: 0;
+		padding: 0 2 * $gutter;
 	}
 } // .wrap
 
