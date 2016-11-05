@@ -17,7 +17,7 @@
 		<div class="wrap">
 
 			<div class="site-info">
-				<?php lavander_get_copyright_text(); ?>
+				<?php echo wp_kses_post( lavander_get_copyright_text() ); ?>
 			</div>
 
 		</div><!-- .wrap -->

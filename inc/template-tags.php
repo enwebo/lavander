@@ -204,8 +204,8 @@ function lavander_display_logo() {
 /**
  * Trim the title length.
  *
- * @param  array  $args  Parameters include length and more.
- * @return string        The shortened excerpt.
+ * @param array $args Parameters include length and more.
+ * @return string The shortened excerpt.
  */
 function lavander_get_the_title( $args = array() ) {
 
@@ -233,8 +233,8 @@ add_filter( 'the_content_more_link', 'lavander_content_more_link' );
 /**
  * Customize the [...] on the_excerpt();
  *
- * @param string   $more     The current $more string.
- * @return string            Replace with "Read More..."
+ * @param string $more The current $more string.
+ * @return string Replace with "Read More..."
  */
 function lavander_excerpt_more( $more ) {
 	return sprintf( ' <a class="more-link" href="%1$s">%2$s</a>', get_permalink( get_the_ID() ), esc_html__( 'Read more...', 'lavander' ) );
@@ -244,15 +244,15 @@ add_filter( 'excerpt_more', 'lavander_excerpt_more' );
 /**
  * Limit the excerpt length.
  *
- * @param  array  $args  Parameters include length and more.
- * @return string        The shortened excerpt.
+ * @param  array $args Parameters include length and more.
+ * @return string The shortened excerpt.
  */
 function lavander_get_the_excerpt( $args = array() ) {
 
 	// Set defaults.
 	$defaults = array(
 		'length' => 20,
-		'more'   => '...'
+		'more'   => '...',
 	);
 
 	// Parse args.
@@ -265,7 +265,7 @@ function lavander_get_the_excerpt( $args = array() ) {
 /**
  * Echo an image, no matter what.
  *
- * @param string  $size  The image size you want to display.
+ * @param string $size The image size you want to display.
  */
 function lavander_get_post_image( $size = 'thumbnail' ) {
 
@@ -274,7 +274,7 @@ function lavander_get_post_image( $size = 'thumbnail' ) {
 		return the_post_thumbnail( $size );
 	}
 
-	// Check for any attached image
+	// Check for any attached image.
 	$media = get_attached_media( 'image', get_the_ID() );
 	$media = current( $media );
 
@@ -298,8 +298,8 @@ function lavander_get_post_image( $size = 'thumbnail' ) {
 /**
  * Return an image URI, no matter what.
  *
- * @param  string  $size  The image size you want to return.
- * @return string         The image URI.
+ * @param string $size The image size you want to return.
+ * @return string The image URI.
  */
 function lavander_get_post_image_uri( $size = 'thumbnail' ) {
 
@@ -332,8 +332,8 @@ function lavander_get_post_image_uri( $size = 'thumbnail' ) {
 /**
  * Get an attachment ID from it's URL.
  *
- * @param  string  $attachment_url  The URL of the attachment.
- * @return int                      The attachment ID.
+ * @param string $attachment_url The URL of the attachment.
+ * @return int The attachment ID.
  */
 function lavander_get_attachment_id_from_url( $attachment_url = '' ) {
 
@@ -358,8 +358,8 @@ function lavander_get_attachment_id_from_url( $attachment_url = '' ) {
 		// Remove the upload path base directory from the attachment URL.
 		$attachment_url = str_replace( $upload_dir_paths['baseurl'] . '/', '', $attachment_url );
 
-		// Finally, run a custom database query to get the attachment ID from the modified attachment URL.
-		$attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT wposts.ID FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta WHERE wposts.ID = wpostmeta.post_id AND wpostmeta.meta_key = '_wp_attached_file' AND wpostmeta.meta_value = '%s' AND wposts.post_type = 'attachment'", $attachment_url ) );
+		// Do something with $result.
+		$attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT wposts.ID FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta WHERE wposts.ID = wpostmeta.post_id AND wpostmeta.meta_key = '_wp_attached_file' AND wpostmeta.meta_value = '%s' AND wposts.post_type = 'attachment'", $attachment_url ) ); // WPCS: db call ok , cache ok.
 
 	}
 
@@ -370,17 +370,18 @@ function lavander_get_attachment_id_from_url( $attachment_url = '' ) {
  * Echo the copyright text saved in the Customizer.
  */
 function lavander_get_header_image() {
-
+/*
 	// Grab our customizer settings.
-	// $header_image = get_theme_mod( 'lavander_header_image' );
+	$header_image = get_theme_mod( 'lavander_header_image' );
 
 	// Stop if there's nothing to display.
-	// if ( ! $header_image ) {
-	// 	return false;
-	// }
+	if ( ! $header_image ) {
+		return false;
+	}
+*/
 
 	// Echo the text.
-	echo '<div class="header-image-container">' . lavander_get_post_image( 'full' ) . '</div>';
+	echo '<div class="header-image-container">' . wp_kses_post( lavander_get_post_image( 'full' ) ) . '</div>';
 }
 
 /**
@@ -408,9 +409,9 @@ function lavander_get_copyright_text() {
 function lavander_get_social_share() {
 
 	// Build the sharing URLs.
-	$twitter_url  = 'https://twitter.com/share?text=' . urlencode( html_entity_decode( get_the_title() ) ) . '&amp;url=' . rawurlencode ( get_the_permalink() );
-	$facebook_url = 'https://www.facebook.com/sharer/sharer.php?u=' . rawurlencode ( get_the_permalink() );
-	$linkedin_url = 'https://www.linkedin.com/shareArticle?title=' . urlencode( html_entity_decode( get_the_title() ) ) . '&amp;url=' . rawurlencode ( get_the_permalink() );
+	$twitter_url  = 'https://twitter.com/share?text=' . rawurlencode( html_entity_decode( get_the_title() ) ) . '&amp;url=' . rawurlencode( get_the_permalink() );
+	$facebook_url = 'https://www.facebook.com/sharer/sharer.php?u=' . rawurlencode( get_the_permalink() );
+	$linkedin_url = 'https://www.linkedin.com/shareArticle?title=' . rawurlencode( html_entity_decode( get_the_title() ) ) . '&amp;url=' . rawurlencode( get_the_permalink() );
 
 	// Start the markup.
 	ob_start(); ?>
@@ -419,19 +420,19 @@ function lavander_get_social_share() {
 		<ul class="social-icons menu menu-horizontal">
 			<li class="social-icon">
 				<a href="<?php echo esc_url( $twitter_url ); ?>" onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=150, left=0, width=600, height=300' ); return false;">
-					<?php echo lavander_get_svg( array( 'icon' => 'twitter-square', 'title' => 'Twitter', 'desc' => __( 'Share on Twitter', 'lavander' ) ) ); ?>
+					<?php echo lavander_get_svg( array( 'icon' => 'twitter-square', 'title' => 'Twitter', 'desc' => __( 'Share on Twitter', 'lavander' ) ) ); // WPCS: XSS ok. ?>
 					<span class="screen-reader-text"><?php esc_html_e( 'Share on Twitter', 'lavander' ); ?></span>
 				</a>
 			</li>
 			<li class="social-icon">
 				<a href="<?php echo esc_url( $facebook_url ); ?>" onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=150, left=0, width=600, height=300' ); return false;">
-					<?php echo lavander_get_svg( array( 'icon' => 'facebook-square', 'title' => 'Facebook', 'desc' => __( 'Share on Facebook', 'lavander' ) ) ); ?>
+					<?php echo lavander_get_svg( array( 'icon' => 'facebook-square', 'title' => 'Facebook', 'desc' => __( 'Share on Facebook', 'lavander' ) ) ); // WPCS: XSS ok. ?>
 					<span class="screen-reader-text"><?php esc_html_e( 'Share on Facebook', 'lavander' ); ?></span>
 				</a>
 			</li>
 			<li class="social-icon">
 				<a href="<?php echo esc_url( $linkedin_url ); ?>" onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=150, left=0, width=475, height=505' ); return false;">
-					<?php echo lavander_get_svg( array( 'icon' => 'linkedin-square', 'title' => 'LinkedIn', 'desc' => __( 'Share on LinkedIn', 'lavander' ) ) ); ?>
+					<?php echo lavander_get_svg( array( 'icon' => 'linkedin-square', 'title' => 'LinkedIn', 'desc' => __( 'Share on LinkedIn', 'lavander' ) ) ); // WPCS: XSS ok. ?>
 					<span class="screen-reader-text"><?php esc_html_e( 'Share on LinkedIn', 'lavander' ); ?></span>
 				</a>
 			</li>
@@ -440,34 +441,16 @@ function lavander_get_social_share() {
 
 	<?php
 	return ob_get_clean();
- }
+}
 
 /**
- * Output the mobile navigation
+ * Output the mobile navigation.
  */
 function lavander_get_mobile_navigation_menu() {
 
-	// Figure out which menu we're pulling
+	// Figure out which menu we're pulling.
 	$mobile_menu = has_nav_menu( 'mobile' ) ? 'mobile' : 'primary';
 
-	// Start the markup.
-	ob_start();
-	?>
-
-	<nav id="mobile-menu" class="mobile-nav-menu">
-		<button class="close-mobile-menu"><span class="screen-reader-text"><?php esc_html_e( 'Close menu', 'lavander' ); ?></span><?php echo lavander_get_svg( array( 'icon' => 'close' ) ); ?></button>
-		<?php
-			wp_nav_menu( array(
-				'theme_location' => $mobile_menu,
-				'menu_id'        => 'primary-menu',
-				'menu_class'     => 'menu dropdown mobile-nav',
-				'link_before'    => '<span>',
-				'link_after'     => '</span>'
-			) );
-		?>
-	</nav>
-	<?php
-	return ob_get_clean();
 }
 
 /**
@@ -478,35 +461,26 @@ function lavander_get_mobile_navigation_menu() {
 function lavander_get_social_network_links() {
 
 	// Create an array of our social links for ease of setup.
-	// Change the order of the networks in this array to change the output order
+	// Change the order of the networks in this array to change the output order.
 	$social_networks = array( 'facebook', 'google-plus', 'instagram', 'linkedin', 'twitter' );
 
-	// Kickoff our output buffer
+	// Kickoff our output buffer.
 	ob_start(); ?>
 
 	<ul class="social-icons">
 	<?php
-	// Loop through our network array
+	// Loop through our network array.
 	foreach ( $social_networks as $network ) :
 
-		// Look for the social network's URL
+		// Look for the social network's URL.
 		$network_url = get_theme_mod( 'lavander_' . $network . '_link' );
 
-		// Only display the list item if a URL is set
+		// Only display the list item if a URL is set.
 		if ( isset( $network_url ) && ! empty( $network_url ) ) : ?>
-			<li class="social-icon <?php esc_attr_e( $network ); ?>">
-				<a href="<?php echo esc_url( $network_url ); ?>" class="icon-<?php echo $network; ?>">
-					<?php
-
-					// echo lavander_get_svg( array(
-					// 	'icon'  => $network . '-square',
-					// 	'title' => sprintf( esc_html__( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) ),
-					// ) );
-
-					echo '<i class="fa fa-' . $network . '" aria-hidden="true"></i>';
-
-					?>
-					<span class="screen-reader-text"><?php echo sprintf( esc_html__( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) ); ?></span>
+			<li class="social-icon <?php esc_html( $network ); ?>">
+				<a href="<?php echo esc_url( $network_url ); ?>" class="icon-<?php echo esc_html( $network ); ?>">
+					<?php echo '<i class="fa fa-' . esc_html( $network ) . '" aria-hidden="true"></i>'; ?>
+					<span class="screen-reader-text"><?php echo sprintf( esc_html__( 'Link to %s', 'lavander' ), esc_html( ucwords( $network ) ) ); ?></span>
 				</a>
 			</li><!-- .social-icon -->
 		<?php endif;
@@ -529,6 +503,5 @@ function lavander_display_lwa_forms() {
 		return false;
 	}
 
-	echo lavander_lwa();
-
+	echo lavander_lwa(); // WPCS: XSS OK.
 }

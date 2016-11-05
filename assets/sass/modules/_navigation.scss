@@ -41,7 +41,7 @@ a {
 		margin: 0 rem(5);
 	}
 
-	& > li:before {
+	& > li::before {
 		@include size(0 rem(1));
 		background: $menu-link-color;
 		content: "";
@@ -53,10 +53,10 @@ a {
 		transition: width 0.3s ease;
 	}
 
-	& > .menu-item:hover:before,
-	& > .current-menu-item:before,
-	& > .menu-item:hover:before {
-	    width: 100%;
+	& > .menu-item:hover::before,
+	& > .current-menu-item::before,
+	& > .menu-item:hover::before {
+		width: 100%;
 	}
 
 	&.menu-horizontal {
@@ -113,6 +113,7 @@ a {
 
 			&:hover > a,
 			.focus > a {
+				position: relative;
 			} // &:hover > a, .focus > a
 
 			a:hover,

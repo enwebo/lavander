@@ -48,32 +48,32 @@ function lavander_customize_register( $wp_customize ) {
 	    );
 	}
 
-    // Add our Footer Customization section section.
-    $wp_customize->add_section(
-        'lavander_footer_section',
-        array(
-            'title'    => esc_html__( 'Footer Customization', 'lavander' ),
-            'priority' => 90,
-        )
-    );
+	// Add our Footer Customization section section.
+	$wp_customize->add_section(
+		'lavander_footer_section',
+		array(
+			'title'    => esc_html__( 'Footer Customization', 'lavander' ),
+			'priority' => 90,
+		)
+	);
 
-    // Add our copyright text field.
-    $wp_customize->add_setting(
-        'lavander_copyright_text',
-        array(
-            'default' => ''
-        )
-    );
-    $wp_customize->add_control(
-        'lavander_copyright_text',
-        array(
-            'label'       => esc_html__( 'Copyright Text', 'lavander' ),
-            'description' => esc_html__( 'The copyright text will be displayed beneath the menu in the footer.', 'lavander' ),
-            'section'     => 'lavander_footer_section',
-            'type'        => 'text',
-            'sanitize'    => 'html'
-        )
-    );
+	// Add our copyright text field.
+	$wp_customize->add_setting(
+		'lavander_copyright_text',
+		array(
+			'default' => '',
+		)
+	);
+	$wp_customize->add_control(
+	'lavander_copyright_text',
+		array(
+			'label'       => esc_html__( 'Copyright Text', 'lavander' ),
+			'description' => esc_html__( 'The copyright text will be displayed beneath the menu in the footer.', 'lavander' ),
+			'section'     => 'lavander_footer_section',
+			'type'        => 'text',
+			'sanitize'    => 'html',
+		)
+	);
 }
 add_action( 'customize_register', 'lavander_customize_register' );
 
@@ -81,20 +81,30 @@ add_action( 'customize_register', 'lavander_customize_register' );
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function lavander_customize_preview_js() {
-    wp_enqueue_script( 'lavander_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '20151215', true );
+	wp_enqueue_script( 'lavander_customizer', get_template_directory_uri() . '/assets/js/customizer.js', array( 'customize-preview' ), '20151215', true );
 }
 add_action( 'customize_preview_init', 'lavander_customize_preview_js' );
 
 /**
  * Sanitize our customizer text inputs.
+ *
+ * @param  string $input Text saved in Customizer input fields.
+ * @return string        Sanitized output.
+ *
+ * @author Corey Collins
  */
 function lavander_sanitize_customizer_text( $input ) {
-    return sanitize_text_field( force_balance_tags( $input ) );
+	return sanitize_text_field( force_balance_tags( $input ) );
 }
 
 /**
  * Sanitize our customizer URL inputs.
+ *
+ * @param  string $input The URL we need to validate.
+ * @return string        Sanitized output.
+ *
+ * @author Corey Collins
  */
 function lavander_sanitize_customizer_url( $input ) {
-    return esc_url( $input );
+	return esc_url( $input );
 }
