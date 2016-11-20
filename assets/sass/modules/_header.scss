@@ -40,9 +40,10 @@
 }
 
 .header-content {
-    box-shadow: 0 0 rem(60) 0 rgba($color-asparagus-gray, 0.5);
+	box-shadow: 0 0 rem(60) 0 rgba($color-asparagus-gray, 0.5);
 	float: left;
 	max-width: $desktop / 12 * 2;
+	overflow: hidden;
 	padding: rem(20);
 }
 

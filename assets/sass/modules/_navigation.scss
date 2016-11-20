@@ -20,6 +20,15 @@ a {
 // Default menu (active after a fresh WordPress install)
 .menu {
 	@include list-reset;
+	
+	// Don't show this puppy above tablet-landscape
+	@include media($phone-landscape) {
+		display: none;
+	}
+
+	&.more {
+		display: block;
+	}
 
 	li {
 		margin: 0;
@@ -32,7 +41,7 @@ a {
 	a {
 		color: $menu-link-color;
 		font-size: $menu-font-size;
-		font-weight: 500;
+		font-weight: 600;
 		letter-spacing: rem(4);
 		padding: rem(10) rem(29);
 	} // a
@@ -219,3 +228,71 @@ a {
 		text-align: right;
 	} // &.nav-next
 } // .comment-navigation, .posts-navigation, .post-navigation
+
+.menu-btn {
+	cursor: pointer;
+	display:  flex;
+	flex-flow: row wrap;
+	height: rem(36);
+	justify-content: space-between;
+	width: 100%;
+
+	.menu-title {
+		color: $menu-button-color;
+		line-height: rem(36);
+		opacity: 0;
+		position: absolute;
+		transform: translate(-100%);
+		transition: transform 1s;
+	}
+
+	.menu-icon {
+		display: flex;
+		flex: initial;
+		flex-flow: column wrap;
+		justify-content: flex-start;
+		margin: 0 auto;
+	}
+
+	span {
+		background: $menu-button-color;
+		border-radius: rem(2);
+		display: block;
+		flex: initial;
+		height: rem(4);
+		margin-bottom: rem(12);
+		transition: transform 2s, width 1s, position 1s;
+	} // span
+
+	span:first-child {
+		width: rem(52);
+	} // span:first-child
+
+	span:last-child {
+		margin-bottom: 0;
+		margin-left: rem(10);
+		width: rem(42);
+	} // span:last-child
+
+	&:hover {
+		.menu-title {
+			opacity: 1;
+			position: relative;
+			transform: translate(0);
+		}
+
+		.menu-icon {
+			margin: 0;
+			width: rem(100);
+		}
+
+		span {
+			width: rem(100);
+		} // span:nth-child(2)
+
+		span:first-child,
+		span:last-child {
+			transform: translate(200%);
+		} // span:first-child, span:last-child
+	}
+} // .menu-btn

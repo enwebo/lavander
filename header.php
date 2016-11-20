@@ -59,6 +59,14 @@
 				</div><!-- .site-branding -->
 
 				<nav id="site-navigation" class="main-navigation">
+					<div class="menu-btn">
+						<div class="menu-title"><?php esc_html_e( 'Menu', 'lavander' ) ?></div>
+						<div class="menu-icon">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+					</div>
 					<?php
 						wp_nav_menu( array(
 							'theme_location' => 'primary',
