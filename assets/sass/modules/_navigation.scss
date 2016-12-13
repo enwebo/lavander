@@ -23,11 +23,7 @@ a {
 	
 	// Don't show this puppy above tablet-landscape
 	@include media($phone-landscape) {
-		display: none;
-	}
-
-	&.more {
-		display: block;
+		
 	}
 
 	li {
@@ -48,6 +44,23 @@ a {
 
 	& > li {
 		margin: 0 rem(5);
+		opacity: 0;
+		transform: scale(0, 0);
+		transition-duration: .6s;
+		transition-timing-function: ease-in-out;
+		transition-delay: 0s;
+		transition: 0s;
+
+		.menu-more & {
+			@for $i from 1 through 10 {
+				&:nth-child(#{$i}) {
+					transition-delay:(#{$i*0.05s});
+				}
+			}
+
+			opacity: 1;
+			transform: scale(1, 1);
+		}
 	}
 
 	& > li::before {
@@ -139,7 +152,7 @@ a {
 
 		// Menu items
 		li {
-			float: left;
+			display: inline-block;
 			position: relative;
 
 			&:hover > a,
@@ -169,7 +182,9 @@ a {
 
 // Main navigation (after creating a menu in the dashboard)
 .main-navigation {
+	position: relative;
 	@include size(100% auto);
+	height: 0;
 	align-items: center;
 	clear: both;
 	display: flex;
@@ -177,13 +192,18 @@ a {
 	flex-wrap: wrap;
 	justify-content: center;
 	margin: 0 auto;
+	z-index: 9;
+	white-space: nowrap;
+
+	.menu-more & {
+		white-space: auto;
+		height: auto;
+	}
 
 	// Menu area
-	ul {
-		display: none;
-
+	ul.menu {
 		@include media($phone-landscape) {
-			display: block;
+			// display: block;
 		}
 	} // ul
 
@@ -229,70 +249,179 @@ a {
 	} // &.nav-next
 } // .comment-navigation, .posts-navigation, .post-navigation
 
-.menu-btn {
-	cursor: pointer;
-	display:  flex;
-	flex-flow: row wrap;
-	height: rem(36);
-	justify-content: space-between;
+.menu-btn-cont {
+	text-align: center;
 	width: 100%;
+}
+.menu-btn {
+	position: relative;
+	background-color: transparent;
+	overflow: hidden;
+	transition: .2s ease-in-out;
+	width: rem(40);
+	cursor: pointer;
+	margin-left: auto;
+	margin-right: auto;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
 
 	.menu-title {
+		position: relative;
+		display: inline-block;
+		vertical-align: middle;
 		color: $menu-button-color;
-		line-height: rem(36);
+		font-size: rem(14);
 		opacity: 0;
-		position: absolute;
-		transform: translate(-100%);
-		transition: transform 1s;
+		margin-left: -230%; // TODO: Make flexible for any words
+		text-transform: uppercase;
+		letter-spacing: rem(4);
+		padding-right: rem(8);
+		transition: .2s ease-in-out;
 	}
 
 	.menu-icon {
-		display: flex;
-		flex: initial;
-		flex-flow: column wrap;
-		justify-content: flex-start;
-		margin: 0 auto;
+		position: relative;
+		width: rem(30);
+		height: rem(18);
+		display: inline-block;
+		vertical-align: middle;
+
+		span {
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: $menu-button-color;
+			border-radius: rem(2);
+			display: block;
+			width: 100%;
+			height: rem(2);
+			transition: .2s ease-in-out;
+
+			&:nth-child(1) {
+				width: 80%;
+			}
+			&:nth-child(2) {
+				top: 50%;
+				transform: translate(0, -50%);
+			}
+			&:nth-child(3) {
+				width: 65%;
+				top: 100%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
 	}
 
-	span {
-		background: $menu-button-color;
-		border-radius: rem(2);
-		display: block;
-		flex: initial;
-		height: rem(4);
-		margin-bottom: rem(12);
-		transition: transform 2s, width 1s, position 1s;
-	} // span
-
-	span:first-child {
-		width: rem(52);
-	} // span:first-child
-
-	span:last-child {
-		margin-bottom: 0;
-		margin-left: rem(10);
-		width: rem(42);
-	} // span:last-child
-
 	&:hover {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		align-content: stretch;
+		background-color: transparent;
+		width: 100%;
+		
 		.menu-title {
 			opacity: 1;
-			position: relative;
-			transform: translate(0);
+			margin-left: 0;
 		}
 
 		.menu-icon {
-			margin: 0;
-			width: rem(100);
+			width: 100%;
+			margin-left: 0;
+
+			span {
+
+				&:nth-child(1) {
+					opacity: 0;
+					left: 100%;
+				}
+
+				&:nth-child(2) {
+					width: 100%;
+				}
+
+				&:nth-child(3) {
+					opacity: 0;
+					left: 100%;
+				}
+
+			}
 		}
+		
+	}
 
-		span {
-			width: rem(100);
-		} // span:nth-child(2)
-
-		span:first-child,
-		span:last-child {
-			transform: translate(200%);
-		} // span:first-child, span:last-child
+	.menu-more & {
+		display: none;
 	}
 } // .menu-btn
+
+.close-menu {
+	position: absolute;
+	background-color: transparent;
+	overflow: hidden;
+	transition: .2s ease-in-out;
+	cursor: pointer;
+	width: rem(25);
+	height: rem(25);
+	z-index: 30;
+
+	span {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		&:before {
+			content: '';
+			display: block;
+			width: 100%;
+			height: rem(2);
+			background-color: $color-asparagus-gray;
+			border-radius: rem(1);
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translate(0, -50%) rotate(45deg);
+		}
+		&:after {
+			content: '';
+			display: block;
+			width: 100%;
+			height: rem(2);
+			background-color: $color-asparagus-gray;
+			border-radius: rem(1);
+			position: absolute;
+			top: 50%;
+			left: 0;
+			transform: translate(0, -50%) rotate(-45deg);
+		}
+	}
+
+	&:hover {
+		background-color: transparent;
+	}
+
+	&:focus {
+		background-color: transparent;
+		outline: none;
+		box-shadow: none;
+	}
+
+	.header-top-controls & {
+		top: 0;
+		left: 50%;
+		transition: transform .4s .3s;
+		transform: translate(-50%, 10%) scale(0, 0);
+
+		.menu-more & {
+			transform: translate(-50%, 10%) scale(1, 1);
+		}
+	}
+
+	
+
+} // .close-menu

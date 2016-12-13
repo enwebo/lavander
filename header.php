@@ -35,56 +35,96 @@
 
 	<header class="site-header">
 		<div class="wrap">
-			<div class="header-content">
+		
+			<div class="header-container">
 
-				<div class="site-actions">
-					<?php lavander_display_lwa_forms(); ?>
-				</div>
+				<div class="header-content">
 
-				<div class="site-logo">
-					<?php lavander_display_logo(); ?>
-				</div>
+					<div class="header-top-controls">
 
-				<div class="site-branding">
-					<?php if ( is_front_page() && is_home() ) : ?>
-						<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-					<?php else : ?>
-						<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-					<?php endif;
+						<ul class="header-controls-list">
+							<li class="account-item"><a href="#"></a></li>
+							<li class="woo-item">
+								<a href="#">
+									<span class="badge">3</span>
+								</a>
+							</li>
+						</ul>
 
-					$description = get_bloginfo( 'description', 'display' ); ?>
-					<?php if ( $description || is_customize_preview() ) : ?>
-						<p class="site-description"><?php echo $description; // WPCS: xss ok. ?></p>
-					<?php endif; ?>
-				</div><!-- .site-branding -->
-
-				<nav id="site-navigation" class="main-navigation">
-					<div class="menu-btn">
-						<div class="menu-title"><?php esc_html_e( 'Menu', 'lavander' ) ?></div>
-						<div class="menu-icon">
+						<button type="button" class="close-menu">
 							<span></span>
-							<span></span>
-							<span></span>
+						</button>
+
+					</div>
+
+					<div class="site-actions">
+						<?php lavander_display_lwa_forms(); ?>
+					</div>
+
+					<div class="site-logo">
+						<?php lavander_display_logo(); ?>
+					</div>
+
+					<div class="site-branding">
+						<?php if ( is_front_page() && is_home() ) : ?>
+							<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+						<?php else : ?>
+							<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+						<?php endif;
+
+						$description = get_bloginfo( 'description', 'display' ); ?>
+						<?php if ( $description || is_customize_preview() ) : ?>
+							<p class="site-description"><?php echo $description; // WPCS: xss ok. ?></p>
+						<?php endif; ?>
+					</div><!-- .site-branding -->
+
+					<nav id="site-navigation" class="main-navigation">
+						<div class="menu-btn-cont menu-bottom">
+							<button type="button" class="menu-btn">
+								<span class="menu-title"><?php esc_html_e( 'Menu', 'lavander' ) ?></span>
+								<span class="menu-icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+							</button>
+						</div>
+						<?php
+							wp_nav_menu( array(
+								'theme_location' => 'primary',
+								'menu_id'        => 'primary-menu',
+								'menu_class'     => 'menu dropdown center',
+							) );
+						?>
+					</nav><!-- #site-navigation -->
+
+					<div class="site-socials header-socials">
+						<div class="contact-link">
+							<a href="mailto:contact@enwebo.com">contact@enwebo.com</a>
+						</div>
+						<?php echo lavander_get_social_network_links(); ?>
+					</div><!-- .site-socials -->
+
+				</div><!-- .header-content -->
+
+				<div class="header-image">
+
+					<div class="header-image-container" style="background-image: url(http://lavander.dev/wp-content/uploads/2013/03/header-1.jpg)">
+						<div class="header-image-content">
+							<div class="header-image-logo">
+								<img src="http://lavander.dev/wp-content/uploads/2016/12/logo-white.png" alt="image">
+							</div>
+							<div class="header-image-text">
+								<h5>WELCOME TO OUR</h5>
+								<h1>LAVENDER FARM</h1>
+							</div>
 						</div>
 					</div>
-					<?php
-						wp_nav_menu( array(
-							'theme_location' => 'primary',
-							'menu_id'        => 'primary-menu',
-							'menu_class'     => 'menu dropdown center',
-						) );
-					?>
-				</nav><!-- #site-navigation -->
 
-				<div class="site-socials header-socials">
-					<?php echo lavander_get_social_network_links(); ?>
-				</div><!-- .site-socials -->
+					<?php // lavander_get_header_image(); ?>
+				</div><!-- .header-image -->
 
-			</div><!-- .header-content -->
-
-			<div class="header-image">
-				<?php lavander_get_header_image(); ?>
-			</div><!-- .header-image -->
+			</div>
 
 		</div><!-- .wrap -->
 	</header><!-- #masthead -->

@@ -24,14 +24,26 @@
     justify-content: center;
 	margin-bottom: rem(200);
 	padding-top: rem(40);
+	padding-right: rem(20);
+	padding-left: rem(20);
 
-	img {
+	a {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 		max-width: rem(220);
 
+		img {
+			max-width: 100%;
+		}
 	}
+
 } // .site-logo
 
 .site-header {
+	position: relative;
+	z-index: 9;
+
 	.wrap {
 		max-width: $desktop;
 		width: 100%;
@@ -39,30 +51,133 @@
 
 }
 
+.header-container {
+	position: relative;
+}
+
 .header-content {
+	background-color: #fff;
 	box-shadow: 0 0 rem(60) 0 rgba($color-asparagus-gray, 0.5);
-	float: left;
+	width: 100%;
 	max-width: $desktop / 12 * 2;
+	padding: rem(25);
+	position: absolute;
+	top: 0;
+	left: 0;
+	transition: .2s ease-in-out;
 	overflow: hidden;
-	padding: rem(20);
+
+	.menu-more & {
+		overflow: visible;
+		max-width: 100%;
+	}
 }
 
 .header-image {
 	padding-left: $desktop / 12 * 2;
     width: 100%;
 
-	img {
-		height: auto;
-    	width: 100%;
+	.header-image-container {
+		min-height: rem(300);
+		padding: rem(80) rem(30);
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-color: rgba($color-asparagus-gray, 1);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+
+		.header-image-content {
+			color: $color-lighter-yellow;
+		}
+	}
+}
+
+.header-top-controls {
+	position: relative;
+
+	.header-controls-list {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		margin-left: rem(-15);
+		margin-right: rem(-15);
+
+		li {
+			font-family: 'FontAwesome';
+			font-size: rem(20);
+			padding-left: rem(15);
+			padding-right: rem(15);
+
+			a {
+				display: block;
+				color: $color-gray;
+				text-decoration: none;
+			}
+
+			&.woo-item {
+				order: 1;
+
+				a {
+					position: relative;
+
+					&:before {
+						content: '\f291';
+					}
+
+					.badge {
+						display: inline-block;
+						background-color: $color-green;
+						color: $color-lighter-yellow;
+						font-size: rem(12);
+						padding: rem(3) rem(6);
+						line-height: 1;
+						border-radius: 50%;
+						position: absolute;
+						top: 0;
+						right: 0;
+						transform: translate(50%,-15%);
+						box-shadow: 0 0 0 rem(1) $color-white;
+					}
+				}
+			}
+			&.account-item {
+				order: 2;
+
+				a {
+					&:before {
+						content: '\f007';
+					}
+				}
+			}
+		}
 	}
 }
 
 .header-socials {
-	align-items: center;
-	clear: both;
-	display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
 	margin: rem(120) auto rem(40);
+	text-align: center;
+	height: 0;
+	opacity: 0;
+	transform: scale(0, 0);
+	transition: .4s ease-in-out;
+
+	.contact-link {
+		margin-bottom: rem(15);
+
+		a {
+			text-decoration: none;
+		}
+	}
+
+	.menu-more & {
+		height: auto;
+		opacity: 1;
+		transform: scale(1, 1);
+	}
 }
