@@ -1,0 +1,38 @@
+// ----------------------------------------------------------------------
+// Color Classes
+// ----------------------------------------------------------------------
+
+/// Set up color classes quickly by looping through a color Sass map.
+////
+/// @author Carrie Forde, Allison Tarr
+/// @group WDS
+/// @param {map} $colors [$colors] - The map of colors to loop through.
+///
+/// @example - scss Basic Usage Sass.
+/// .color {
+///		@include colors($theme-colors, color);
+/// }
+///
+/// @example scss - Basic Usage: CSS Output
+///  .color-light-yellow {
+///		color: $color-light-yellow;
+///  }
+
+@mixin colors($color-map, $color-type: color) {
+
+	@each $name, $color in $color-map {
+
+		&-#{$name} {
+
+			@if $color-type == color {
+				color: $color;
+			} @else if $color-type == background or $color-type == background-color {
+				background-color: $color;
+			} @else if $color-type == fill {
+				fill: $color;
+			} @else {
+				@error 'Please check the $color-type. It should be `color`, `fill`, `background`, or `background-color`.';
+			}
+		}
+	}
+}
