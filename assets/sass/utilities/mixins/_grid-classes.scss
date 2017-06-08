@@ -30,10 +30,16 @@
 
 	$columns: map-get($context, columns);
 
-	@for $i from 1 through $columns {
+	// Check to see if map has 'columns' key defined.
+	@if map-has-key($context, columns) {
 
-		.col-#{$i} {
-			@include grid-column($i, $context);
+		@for $i from 1 through $columns {
+
+			.col-#{$i} {
+				@include grid-column($i, $context);
+			} // .col-#{$i}
 		}
+	} @else {
+		@error 'Please double-check the column`s value of your grid`s Sass map.';
 	}
 }
