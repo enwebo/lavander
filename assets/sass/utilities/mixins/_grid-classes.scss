@@ -1,0 +1,39 @@
+// ----------------------------------------------------------------------
+// Grid Classes
+// ----------------------------------------------------------------------
+
+////
+/// @author Carrie Forde, Allison Tarr
+/// @group WDS
+/// @param {map} $context [$neat-grid] - The Sass map on which the grid is based.
+///
+/// Calculate your own grid: http://gridcalculator.dk
+///
+/// @example - scss Basic Usage Sass.
+///  .my-custom-grid {
+///    @include grid-classes($neat-grid);
+///  }
+///
+/// @example scss - Basic Usage: CSS Output
+///  .my-custom-grid {
+///         .col-1 {}
+///
+///         .col-2 {}
+///
+///         .col-3 {}
+///
+///         ...etc.
+///  }
+
+@mixin grid-classes($context: $neat-grid) {
+	@include grid-container; // adds clearfix to 'row'
+
+	$columns: map-get($context, columns);
+
+	@for $i from 1 through $columns {
+
+		.col-#{$i} {
+			@include grid-column($i, $context);
+		}
+	}
+}
