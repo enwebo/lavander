@@ -2,40 +2,40 @@
 /**
  * Set up the theme customizer.
  *
- * @package _s
+ * @package Lavander
  */
 
 /**
  * Include other customizer files.
  */
-function _s_include_custom_controls() {
+function lavander_include_custom_controls() {
 	require get_template_directory() . '/inc/customizer/panels.php';
 	require get_template_directory() . '/inc/customizer/sections.php';
 	require get_template_directory() . '/inc/customizer/settings.php';
 	require get_template_directory() . '/inc/customizer/class-text-editor-custom-control.php';
 }
-add_action( 'customize_register', '_s_include_custom_controls', -999 );
+add_action( 'customize_register', 'lavander_include_custom_controls', -999 );
 
 /**
  * Enqueue customizer related scripts.
  */
-function _s_customize_scripts() {
-	wp_enqueue_script( '_s-customize-livepreview', get_template_directory_uri() . '/inc/customizer/assets/scripts/livepreview.js', array( 'jquery', 'customize-preview' ), '1.0.0', true );
+function lavander_customize_scripts() {
+	wp_enqueue_script( 'lavander-customize-livepreview', get_template_directory_uri() . '/inc/customizer/assets/scripts/livepreview.js', array( 'jquery', 'customize-preview' ), '1.0.0', true );
 }
-add_action( 'customize_preview_init', '_s_customize_scripts' );
+add_action( 'customize_preview_init', 'lavander_customize_scripts' );
 
 /**
  * Add support for the fancy new edit icons.
  *
  * @link https://make.wordpress.org/core/2016/02/16/selective-refresh-in-the-customizer/
  */
-function _s_selective_refresh_support( $wp_customize ) {
+function lavander_selective_refresh_support( $wp_customize ) {
 
 	// The <div> classname to append edit icon too.
 	$settings = array(
 		'blogname'          => '.site-title a',
 		'blogdescription'   => '.site-description',
-		'_s_copyright_text' => '.site-info',
+		'lavander_copyright_text' => '.site-info',
 	);
 
 	// Loop through, and add selector partials.
@@ -44,7 +44,7 @@ function _s_selective_refresh_support( $wp_customize ) {
 		$wp_customize->selective_refresh->add_partial( $setting, $args );
 	}
 }
-add_action( 'customize_register', '_s_selective_refresh_support' );
+add_action( 'customize_register', 'lavander_selective_refresh_support' );
 
 /**
  * Add live preview support via postMessage.
@@ -53,7 +53,7 @@ add_action( 'customize_register', '_s_selective_refresh_support' );
  *
  * @link https://codex.wordpress.org/Theme_Customization_API#Part_3:_Configure_Live_Preview_.28Optional.29
  */
-function _s_live_preview_support( $wp_customize ) {
+function lavander_live_preview_support( $wp_customize ) {
 
 	// Settings to apply live preview to.
 	$settings = array(
@@ -61,7 +61,7 @@ function _s_live_preview_support( $wp_customize ) {
 		'blogdescription',
 		'header_textcolor',
 		'background_image',
-		'_s_copyright_text',
+		'lavander_copyright_text',
 	);
 
 	// Loop through and add the live preview to each setting.
@@ -79,4 +79,4 @@ function _s_live_preview_support( $wp_customize ) {
 		$setting->transport = 'postMessage';
 	}
 }
-add_action( 'customize_register', '_s_live_preview_support', 999 );
+add_action( 'customize_register', 'lavander_live_preview_support', 999 );

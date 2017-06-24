@@ -4,7 +4,7 @@
  *
  * A place to put hooks and filters that aren't necessarily template tags.
  *
- * @package _s
+ * @package Lavander
  */
 
 /**
@@ -13,7 +13,7 @@
  * @param array $classes Classes for the body element.
  * @return array
  */
-function _s_body_classes( $classes ) {
+function lavander_body_classes( $classes ) {
 
 	// @codingStandardsIgnoreStart
 	// Allows for incorrect snake case like is_IE to be used without throwing errors.
@@ -59,28 +59,28 @@ function _s_body_classes( $classes ) {
 
 	return $classes;
 }
-add_filter( 'body_class', '_s_body_classes' );
+add_filter( 'body_class', 'lavander_body_classes' );
 
 /**
- * Flush out the transients used in _s_categorized_blog.
+ * Flush out the transients used in lavander_categorized_blog.
  */
-function _s_category_transient_flusher() {
+function lavander_category_transient_flusher() {
 	if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 		return false;
 	}
 	// Like, beat it. Dig?
-	delete_transient( '_s_categories' );
+	delete_transient( 'lavander_categories' );
 }
-add_action( 'delete_category', '_s_category_transient_flusher' );
-add_action( 'save_post',     '_s_category_transient_flusher' );
+add_action( 'delete_category', 'lavander_category_transient_flusher' );
+add_action( 'save_post',     'lavander_category_transient_flusher' );
 
 /**
  * Customize "Read More" string on <!-- more --> with the_content();
  */
-function _s_content_more_link() {
-	return ' <a class="more-link" href="' . get_permalink() . '">' . esc_html__( 'Read More', '_s' ) . '...</a>';
+function lavander_content_more_link() {
+	return ' <a class="more-link" href="' . get_permalink() . '">' . esc_html__( 'Read More', 'lavander' ) . '...</a>';
 }
-add_filter( 'the_content_more_link', '_s_content_more_link' );
+add_filter( 'the_content_more_link', 'lavander_content_more_link' );
 
 /**
  * Customize the [...] on the_excerpt();
@@ -88,10 +88,10 @@ add_filter( 'the_content_more_link', '_s_content_more_link' );
  * @param string $more The current $more string.
  * @return string Replace with "Read More..."
  */
-function _s_excerpt_more( $more ) {
-	return sprintf( ' <a class="more-link" href="%1$s">%2$s</a>', get_permalink( get_the_ID() ), esc_html__( 'Read more...', '_s' ) );
+function lavander_excerpt_more( $more ) {
+	return sprintf( ' <a class="more-link" href="%1$s">%2$s</a>', get_permalink( get_the_ID() ), esc_html__( 'Read more...', 'lavander' ) );
 }
-add_filter( 'excerpt_more', '_s_excerpt_more' );
+add_filter( 'excerpt_more', 'lavander_excerpt_more' );
 
 /**
  * Enable custom mime types.
@@ -99,12 +99,12 @@ add_filter( 'excerpt_more', '_s_excerpt_more' );
  * @param array $mimes Current allowed mime types.
  * @return array Updated allowed mime types.
  */
-function _s_custom_mime_types( $mimes ) {
+function lavander_custom_mime_types( $mimes ) {
 	$mimes['svg'] = 'image/svg+xml';
 	$mimes['svgz'] = 'image/svg+xml';
 	return $mimes;
 }
-add_filter( 'upload_mimes', '_s_custom_mime_types' );
+add_filter( 'upload_mimes', 'lavander_custom_mime_types' );
 
 /**
  * Disable the "Cancel reply" link. It doesn't seem to work anyway, and it only makes the "Leave Reply" heading confusing.

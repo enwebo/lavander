@@ -2,7 +2,7 @@
 /**
  * The template used for displaying a generic content block.
  *
- * @package _s
+ * @package Lavander
  */
 
 // Set up fields.

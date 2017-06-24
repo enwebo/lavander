@@ -2,19 +2,19 @@
 /**
  * The template used for displaying icons in the scaffolding library.
  *
- * @package _s
+ * @package Lavander
  */
 ?>
 
 <section class="section-scaffolding">
 
-	<h2 class="scaffolding-heading"><?php esc_html_e( 'Icons', '_s' ); ?></h2>
+	<h2 class="scaffolding-heading"><?php esc_html_e( 'Icons', 'lavander' ); ?></h2>
 
 	<?php // SVG
-	_s_display_scaffolding_section( array(
+	lavander_display_scaffolding_section( array(
 		'title'       => 'SVG',
 		'description' => 'Display inline SVGs.',
-		'usage'       => '<?php _s_get_svg( array( \'icon\' => \'facebook-square\' ) ); ?>',
+		'usage'       => '<?php lavander_get_svg( array( \'icon\' => \'facebook-square\' ) ); ?>',
 		'parameters'  => array(
 			'$args' => '(required) Configuration arguments.',
 		),
@@ -23,6 +23,6 @@
 			'title' => '(optional) The title of the icon. Default: none',
 			'desc'  => '(optional) The description of the icon. Default: none',
 		),
-		'output'       => _s_get_svg( array( 'icon' => 'facebook-square' ) ),
+		'output'       => lavander_get_svg( array( 'icon' => 'facebook-square' ) ),
 	) ); ?>
 </section>

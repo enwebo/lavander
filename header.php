@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package _s
+ * @package Lavander
  */
 
 ?>
@@ -23,7 +23,7 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', '_s' ); ?></a>
+	<a class="skip-link screen-reader-text" href="#main"><?php esc_html_e( 'Skip to content', 'lavander' ); ?></a>
 
 	<header class="site-header">
 		<div class="wrap">
@@ -46,7 +46,7 @@
 				<?php endif; ?>
 			</div><!-- .site-branding -->
 
-			<button type="button" class="off-canvas-open" aria-expanded="false" aria-label="<?php esc_html_e( 'Open Menu', '_s' ); ?>">
+			<button type="button" class="off-canvas-open" aria-expanded="false" aria-label="<?php esc_html_e( 'Open Menu', 'lavander' ); ?>">
 				<span class="hamburger"></span>
 			</button>
 

@@ -2,7 +2,7 @@
 /**
  * Custom scripts and styles.
  *
- * @package _s
+ * @package Lavander
  */
 
 /**
@@ -10,7 +10,7 @@
  *
  * @link http://themeshaper.com/2014/08/13/how-to-add-google-fonts-to-wordpress-themes/
  */
-function _s_font_url() {
+function lavander_font_url() {
 
 	$fonts_url = '';
 
@@ -19,8 +19,8 @@ function _s_font_url() {
 	 * supported by the following, translate this to 'off'. Do not translate
 	 * into your own language.
 	 */
-	$roboto = esc_html_x( 'on', 'Roboto font: on or off', '_s' );
-	$open_sans = esc_html_x( 'on', 'Open Sans font: on or off', '_s' );
+	$roboto = esc_html_x( 'on', 'Roboto font: on or off', 'lavander' );
+	$open_sans = esc_html_x( 'on', 'Open Sans font: on or off', 'lavander' );
 
 	if ( 'off' !== $roboto || 'off' !== $open_sans ) {
 		$font_families = array();
@@ -46,7 +46,7 @@ function _s_font_url() {
 /**
  * Enqueue scripts and styles.
  */
-function _s_scripts() {
+function lavander_scripts() {
 	/**
 	 * If WP is in script debug, or we pass ?script_debug in a URL - set debug to true.
 	 */
@@ -63,14 +63,14 @@ function _s_scripts() {
 	$suffix = ( true === $debug ) ? '' : '.min';
 
 	// Register styles.
-	wp_register_style( '_s-google-font', _s_font_url(), array(), null );
+	wp_register_style( 'lavander-google-font', lavander_font_url(), array(), null );
 
 	// Enqueue styles.
-	wp_enqueue_style( '_s-google-font' );
-	wp_enqueue_style( '_s-style', get_stylesheet_directory_uri() . '/style' . $suffix . '.css', array(), $version );
+	wp_enqueue_style( 'lavander-google-font' );
+	wp_enqueue_style( 'lavander-style', get_stylesheet_directory_uri() . '/style' . $suffix . '.css', array(), $version );
 
 	// Enqueue scripts.
-	wp_enqueue_script( '_s-scripts', get_template_directory_uri() . '/assets/scripts/project' . $suffix . '.js', array( 'jquery' ), $version, true );
+	wp_enqueue_script( 'lavander-scripts', get_template_directory_uri() . '/assets/scripts/project' . $suffix . '.js', array( 'jquery' ), $version, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -78,15 +78,15 @@ function _s_scripts() {
 
 	// Enqueue the scaffolding Library script.
 	if ( is_page_template( 'template-scaffolding.php' ) ) {
-		wp_enqueue_script( '_s-scaffolding', get_template_directory_uri() . '/assets/scripts/scaffolding' . $suffix . '.js', array( 'jquery' ), $version, true );
+		wp_enqueue_script( 'lavander-scaffolding', get_template_directory_uri() . '/assets/scripts/scaffolding' . $suffix . '.js', array( 'jquery' ), $version, true );
 	}
 }
-add_action( 'wp_enqueue_scripts', '_s_scripts' );
+add_action( 'wp_enqueue_scripts', 'lavander_scripts' );
 
 /**
  * Add SVG definitions to footer.
  */
-function _s_include_svg_icons() {
+function lavander_include_svg_icons() {
 
 	// Define SVG sprite file.
 	$svg_icons = get_template_directory() . '/assets/images/svg-icons.svg';
@@ -96,4 +96,4 @@ function _s_include_svg_icons() {
 		require_once( $svg_icons );
 	}
 }
-add_action( 'wp_footer', '_s_include_svg_icons', 9999 );
+add_action( 'wp_footer', 'lavander_include_svg_icons', 9999 );

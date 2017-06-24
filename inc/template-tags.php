@@ -4,14 +4,14 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package _s
+ * @package Lavander
  */
 
-if ( ! function_exists( '_s_posted_on' ) ) :
+if ( ! function_exists( 'lavander_posted_on' ) ) :
 	/**
 	 * Prints HTML with meta information for the current post-date/time and author.
 	 */
-	function _s_posted_on() {
+	function lavander_posted_on() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -26,13 +26,13 @@ if ( ! function_exists( '_s_posted_on' ) ) :
 
 		$posted_on = sprintf(
 			/* translators: the date the post was published */
-			esc_html_x( 'Posted on %s', 'post date', '_s' ),
+			esc_html_x( 'Posted on %s', 'post date', 'lavander' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
 
 		$byline = sprintf(
 			/* translators: the post author */
-			esc_html_x( 'by %s', 'post author', '_s' ),
+			esc_html_x( 'by %s', 'post author', 'lavander' ),
 			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 		);
 
@@ -41,38 +41,38 @@ if ( ! function_exists( '_s_posted_on' ) ) :
 	}
 endif;
 
-if ( ! function_exists( '_s_entry_footer' ) ) :
+if ( ! function_exists( 'lavander_entry_footer' ) ) :
 	/**
 	 * Prints HTML with meta information for the categories, tags and comments.
 	 */
-	function _s_entry_footer() {
+	function lavander_entry_footer() {
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
-			$categories_list = get_the_category_list( esc_html__( ', ', '_s' ) );
-			if ( $categories_list && _s_categorized_blog() ) {
+			$categories_list = get_the_category_list( esc_html__( ', ', 'lavander' ) );
+			if ( $categories_list && lavander_categorized_blog() ) {
 				/* translators: the post category */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', '_s' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'lavander' ) . '</span>', $categories_list ); // WPCS: XSS OK.
 			}
 
 			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( '', esc_html__( ', ', '_s' ) );
+			$tags_list = get_the_tag_list( '', esc_html__( ', ', 'lavander' ) );
 			if ( $tags_list ) {
 				/* translators: the post tags */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', '_s' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'lavander' ) . '</span>', $tags_list ); // WPCS: XSS OK.
 			}
 		}
 
 		if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 			echo '<span class="comments-link">';
-			comments_popup_link( esc_html__( 'Leave a comment', '_s' ), esc_html__( '1 Comment', '_s' ), esc_html__( '% Comments', '_s' ) );
+			comments_popup_link( esc_html__( 'Leave a comment', 'lavander' ), esc_html__( '1 Comment', 'lavander' ), esc_html__( '% Comments', 'lavander' ) );
 			echo '</span>';
 		}
 
 		edit_post_link(
 			sprintf(
 				/* translators: %s: Name of current post */
-				esc_html__( 'Edit %s', '_s' ),
+				esc_html__( 'Edit %s', 'lavander' ),
 				the_title( '<span class="screen-reader-text">"', '"</span>', false )
 			),
 			'<span class="edit-link">',
@@ -93,16 +93,16 @@ endif;
  * }
  * @return string SVG markup.
  */
-function _s_get_svg( $args = array() ) {
+function lavander_get_svg( $args = array() ) {
 
 	// Make sure $args are an array.
 	if ( empty( $args ) ) {
-		return esc_html__( 'Please define default parameters in the form of an array.', '_s' );
+		return esc_html__( 'Please define default parameters in the form of an array.', 'lavander' );
 	}
 
 	// Define an icon.
 	if ( false === array_key_exists( 'icon', $args ) ) {
-		return esc_html__( 'Please define an SVG icon filename.', '_s' );
+		return esc_html__( 'Please define an SVG icon filename.', 'lavander' );
 	}
 
 	// Set defaults.
@@ -157,7 +157,7 @@ function _s_get_svg( $args = array() ) {
  * @param array $args Parameters include length and more.
  * @return string        The shortened excerpt.
  */
-function _s_get_the_title( $args = array() ) {
+function lavander_get_the_title( $args = array() ) {
 
 	// Set defaults.
 	$defaults = array(
@@ -178,7 +178,7 @@ function _s_get_the_title( $args = array() ) {
  * @param array $args Parameters include length and more.
  * @return string The shortened excerpt.
  */
-function _s_get_the_excerpt( $args = array() ) {
+function lavander_get_the_excerpt( $args = array() ) {
 
 	// Set defaults.
 	$defaults = array(
@@ -198,7 +198,7 @@ function _s_get_the_excerpt( $args = array() ) {
  *
  * @param string $size The image size to display. Default is thumbnail.
  */
-function _s_display_post_image( $size = 'thumbnail' ) {
+function lavander_display_post_image( $size = 'thumbnail' ) {
 
 	// If post has a featured image, display it.
 	if ( has_post_thumbnail() ) {
@@ -206,7 +206,7 @@ function _s_display_post_image( $size = 'thumbnail' ) {
 		return;
 	}
 
-	$attached_image_url = _s_get_attached_image_url( $size );
+	$attached_image_url = lavander_get_attached_image_url( $size );
 
 	// Else, display an attached image or placeholder.
 	?>
@@ -220,7 +220,7 @@ function _s_display_post_image( $size = 'thumbnail' ) {
  * @param  string $size The image size to return. Deafault is thumbnail.
  * @return string       The image URL.
  */
-function _s_get_post_image_url( $size = 'thumbnail' ) {
+function lavander_get_post_image_url( $size = 'thumbnail' ) {
 
 	// If post has a featured image, return its URL.
 	if ( has_post_thumbnail() ) {
@@ -234,7 +234,7 @@ function _s_get_post_image_url( $size = 'thumbnail' ) {
 	}
 
 	// Else, return the URL for an attached image or placeholder.
-	return _s_get_attached_image_url( $size );
+	return lavander_get_attached_image_url( $size );
 }
 
 /**
@@ -243,7 +243,7 @@ function _s_get_post_image_url( $size = 'thumbnail' ) {
  * @param  string $size The image size to return. Deafault is thumbnail.
  * @return string       The image URL.
  */
-function _s_get_attached_image_url( $size = 'thumbnail' ) {
+function lavander_get_attached_image_url( $size = 'thumbnail' ) {
 
 	// Check for any attached image.
 	$media = get_attached_media( 'image', get_the_ID() );
@@ -261,10 +261,10 @@ function _s_get_attached_image_url( $size = 'thumbnail' ) {
 /**
  * Echo the copyright text saved in the Customizer.
  */
-function _s_display_copyright_text() {
+function lavander_display_copyright_text() {
 
 	// Grab our customizer settings.
-	$copyright_text = get_theme_mod( '_s_copyright_text' );
+	$copyright_text = get_theme_mod( 'lavander_copyright_text' );
 
 	// Stop if there's nothing to display.
 	if ( ! $copyright_text ) {
@@ -278,7 +278,7 @@ function _s_display_copyright_text() {
 /**
  * Display social sharing icons.
  */
-function _s_display_social_icons() {
+function lavander_display_social_icons() {
 
 	// Build the sharing URLs.
 	$twitter_url  = 'https://twitter.com/share?text=' . rawurlencode( html_entity_decode( get_the_title() ) ) . '&amp;url=' . rawurlencode( get_the_permalink() );
@@ -287,36 +287,36 @@ function _s_display_social_icons() {
 
 	?>
 	<div class="social-share">
-		<h5 class="social-share-title"><?php esc_html_e( 'Share This', '_s' ); ?></h5>
+		<h5 class="social-share-title"><?php esc_html_e( 'Share This', 'lavander' ); ?></h5>
 		<ul class="social-icons menu menu-horizontal">
 			<li class="social-icon">
 				<a href="<?php echo esc_url( $twitter_url ); ?>" onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=150, left=0, width=600, height=300' ); return false;">
-					<?php echo _s_get_svg( array( // WPCS: XSS ok.
+					<?php echo lavander_get_svg( array( // WPCS: XSS ok.
 						'icon'  => 'twitter-square',
 						'title' => 'Twitter',
-						'desc'  => esc_html__( 'Share on Twitter', '_s' ),
+						'desc'  => esc_html__( 'Share on Twitter', 'lavander' ),
 					) ); ?>
-					<span class="screen-reader-text"><?php esc_html_e( 'Share on Twitter', '_s' ); ?></span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Share on Twitter', 'lavander' ); ?></span>
 				</a>
 			</li>
 			<li class="social-icon">
 				<a href="<?php echo esc_url( $facebook_url ); ?>" onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=150, left=0, width=600, height=300' ); return false;">
-					<?php echo _s_get_svg( array( // WPCS: XSS ok.
+					<?php echo lavander_get_svg( array( // WPCS: XSS ok.
 						'icon'  => 'facebook-square',
 						'title' => 'Facebook',
-						'desc'  => esc_html__( 'Share on Facebook', '_s' ),
+						'desc'  => esc_html__( 'Share on Facebook', 'lavander' ),
 					) ); ?>
-					<span class="screen-reader-text"><?php esc_html_e( 'Share on Facebook', '_s' ); ?></span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Share on Facebook', 'lavander' ); ?></span>
 				</a>
 			</li>
 			<li class="social-icon">
 				<a href="<?php echo esc_url( $linkedin_url ); ?>" onclick="window.open(this.href, 'targetWindow', 'toolbar=no, location=no, status=no, menubar=no, scrollbars=yes, resizable=yes, top=150, left=0, width=475, height=505' ); return false;">
-					<?php echo _s_get_svg( array( // WPCS: XSS ok.
+					<?php echo lavander_get_svg( array( // WPCS: XSS ok.
 						'icon'  => 'linkedin-square',
 						'title' => 'LinkedIn',
-						'desc'  => esc_html__( 'Share on LinkedIn', '_s' ),
+						'desc'  => esc_html__( 'Share on LinkedIn', 'lavander' ),
 					) ); ?>
-					<span class="screen-reader-text"><?php esc_html_e( 'Share on LinkedIn', '_s' ); ?></span>
+					<span class="screen-reader-text"><?php esc_html_e( 'Share on LinkedIn', 'lavander' ); ?></span>
 				</a>
 			</li>
 		</ul>
@@ -327,7 +327,7 @@ function _s_display_social_icons() {
 /**
  * Display the social links saved in the customizer.
  */
-function _s_display_social_network_links() {
+function lavander_display_social_network_links() {
 
 	// Create an array of our social links for ease of setup.
 	// Change the order of the networks in this array to change the output order.
@@ -340,17 +340,17 @@ function _s_display_social_network_links() {
 		foreach ( $social_networks as $network ) :
 
 			// Look for the social network's URL.
-			$network_url = get_theme_mod( '_s_' . $network . '_link' );
+			$network_url = get_theme_mod( 'lavander_' . $network . '_link' );
 
 			// Only display the list item if a URL is set.
 			if ( ! empty( $network_url ) ) : ?>
 				<li class="social-icon <?php echo esc_attr( $network ); ?>">
 					<a href="<?php echo esc_url( $network_url ); ?>">
-						<?php echo _s_get_svg( array( // WPCS: XSS ok.
+						<?php echo lavander_get_svg( array( // WPCS: XSS ok.
 							'icon'  => $network . '-square',
-							'title' => /* translators: the social network name */ sprintf( esc_html_e( 'Link to %s', '_s' ), ucwords( esc_html( $network ) ) ),
+							'title' => /* translators: the social network name */ sprintf( esc_html_e( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) ),
 						) ); ?>
-						<span class="screen-reader-text"><?php echo /* translators: the social network name */ sprintf( esc_html_e( 'Link to %s', '_s' ), ucwords( esc_html( $network ) ) ); // WPCS: XSS ok. ?></span>
+						<span class="screen-reader-text"><?php echo /* translators: the social network name */ sprintf( esc_html_e( 'Link to %s', 'lavander' ), ucwords( esc_html( $network ) ) ); // WPCS: XSS ok. ?></span>
 					</a>
 				</li><!-- .social-icon -->
 			<?php endif;

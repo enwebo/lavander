@@ -1,8 +1,8 @@
-# Copyright (C) 2017 _s
-# This file is distributed under the same license as the _s package.
+# Copyright (C) 2017 Lavander
+# This file is distributed under the same license as the Lavander package.
 msgid ""
 msgstr ""
-"Project-Id-Version: _s\n"
+"Project-Id-Version: Lavander\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"

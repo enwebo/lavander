@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package _s
+ * @package Lavander
  */
 
 ?>
@@ -17,7 +17,7 @@
 		<div class="wrap">
 
 			<div class="site-info">
-				<?php _s_display_copyright_text(); ?>
+				<?php lavander_display_copyright_text(); ?>
 			</div>
 
 		</div><!-- .wrap -->
@@ -27,7 +27,7 @@
 <?php wp_footer(); ?>
 
 <nav class="off-canvas-container" aria-hidden="true">
-	<button type="button" class="off-canvas-close" aria-label="<?php esc_html_e( 'Close Menu', '_s' ); ?>">
+	<button type="button" class="off-canvas-close" aria-label="<?php esc_html_e( 'Close Menu', 'lavander' ); ?>">
 		<span class="close"></span>
 	</button>
 	<?php

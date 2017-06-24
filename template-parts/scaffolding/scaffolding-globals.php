@@ -2,16 +2,16 @@
 /**
  * The template used for displaying colors & fonts in the scaffolding library.
  *
- * @package _s
+ * @package Lavander
  */
 ?>
 
 <section class="section-scaffolding">
 
-	<h2 class="scaffolding-heading"><?php esc_html_e( 'Globals', '_s' ); ?></h2>
+	<h2 class="scaffolding-heading"><?php esc_html_e( 'Globals', 'lavander' ); ?></h2>
 
 	<?php // Theme colors. ?>
-	<?php _s_display_global_scaffolding_section( array( // WPCS: XSS OK.
+	<?php lavander_display_global_scaffolding_section( array( // WPCS: XSS OK.
 		'global_type' => 'colors',
 		'title'       => 'Colors',
 		'arguments'   => array(
@@ -24,7 +24,7 @@
 	) ); ?>
 
 	<?php // Theme fonts. ?>
-	<?php _s_display_global_scaffolding_section( array( // WPCS: XSS OK.
+	<?php lavander_display_global_scaffolding_section( array( // WPCS: XSS OK.
 		'global_type'  => 'fonts',
 		'title'        => 'Fonts',
 		'arguments'    => array(

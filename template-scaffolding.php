@@ -1,9 +1,9 @@
 <?php
 /**
  * Template Name: Scaffolding
- * Template Post Type: page, scaffolding, _s_scaffolding
+ * Template Post Type: page, scaffolding, lavander_scaffolding
  *
- * @package _s
+ * @package Lavander
  */
 
 // Start Template Scaffolding.
@@ -13,7 +13,7 @@ get_header(); ?>
 		<div class="primary content-area">
 			<main id="main" class="site-main">
 
-				<?php do_action( '_s_scaffolding_content' ); ?>
+				<?php do_action( 'lavander_scaffolding_content' ); ?>
 
 			</main><!-- #main -->
 		</div><!-- .primary -->

@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package _s
+ * @package Lavander
  */
 
 /**
@@ -12,10 +12,10 @@
  *
  * @return bool
  */
-function _s_categorized_blog() {
+function lavander_categorized_blog() {
 
 	// Get the categories.
-	$all_the_cool_cats = get_transient( '_s_categories' );
+	$all_the_cool_cats = get_transient( 'lavander_categories' );
 	if ( false === $all_the_cool_cats ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
@@ -28,14 +28,14 @@ function _s_categorized_blog() {
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( '_s_categories', $all_the_cool_cats );
+		set_transient( 'lavander_categories', $all_the_cool_cats );
 	}
 
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so _s_categorized_blog should return true.
+		// This blog has more than 1 category so lavander_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so _s_categorized_blog should return false.
+		// This blog has only 1 category so lavander_categorized_blog should return false.
 		return false;
 	}
 }
@@ -46,7 +46,7 @@ function _s_categorized_blog() {
  * @param string $attachment_url The URL of the attachment.
  * @return int The attachment ID.
  */
-function _s_get_attachment_id_from_url( $attachment_url = '' ) {
+function lavander_get_attachment_id_from_url( $attachment_url = '' ) {
 
 	global $wpdb;
 
@@ -91,7 +91,7 @@ function _s_get_attachment_id_from_url( $attachment_url = '' ) {
  * }
  * @return string
  */
-function _s_get_placeholder_image( $args = array() ) {
+function lavander_get_placeholder_image( $args = array() ) {
 	$default_args = array(
 		'width'				=> '',
 		'height'			=> '',
@@ -109,26 +109,26 @@ function _s_get_placeholder_image( $args = array() ) {
 
 	// Perform some quick data validation.
 	if ( ! is_numeric( $width ) ) {
-		throw new Exception( esc_html__( 'Width must be an integer', '_s' ) );
+		throw new Exception( esc_html__( 'Width must be an integer', 'lavander' ) );
 	}
 
 	if ( ! is_numeric( $height ) ) {
-		throw new Exception( esc_html__( 'Height must be an integer', '_s' ) );
+		throw new Exception( esc_html__( 'Height must be an integer', 'lavander' ) );
 	}
 
 	if ( ! ctype_xdigit( $background_color ) ) {
-		throw new Exception( esc_html__( 'Please provide a valid hex color value for background_color', '_s' ) );
+		throw new Exception( esc_html__( 'Please provide a valid hex color value for background_color', 'lavander' ) );
 	}
 
 	if ( ! ctype_xdigit( $text_color ) ) {
-		throw new Exception( esc_html__( 'Please provide a valid hex color value for text_color', '_s' ) );
+		throw new Exception( esc_html__( 'Please provide a valid hex color value for text_color', 'lavander' ) );
 	}
 
 	// Set up the url to the image.
 	$url = "http://placeholder.wdslab.com/i/{$width}x$height/$background_color/$text_color";
 
 	// Text that will be utilized by screen readers.
-	$alt = apply_filters( '_s_placeholder_image_alt', esc_html__( 'WebDevStudios Placeholder Image', '_s' ) );
+	$alt = apply_filters( 'lavander_placeholder_image_alt', esc_html__( 'WebDevStudios Placeholder Image', 'lavander' ) );
 
 	return "<img src='$url' width='$width' height='$height' alt='$alt' />";
 }
@@ -148,7 +148,7 @@ function _s_get_placeholder_image( $args = array() ) {
  * }
  * @return string
  */
-function _s_get_placeholder_unsplash( $args = array() ) {
+function lavander_get_placeholder_unsplash( $args = array() ) {
 	$default_args = array(
 		'width'				=> '',
 		'height'			=> '',
@@ -174,11 +174,11 @@ function _s_get_placeholder_unsplash( $args = array() ) {
 
 	// Perform some quick data validation.
 	if ( ! is_numeric( $args['width'] ) ) {
-		throw new Exception( esc_html__( 'Width must be an integer', '_s' ) );
+		throw new Exception( esc_html__( 'Width must be an integer', 'lavander' ) );
 	}
 
 	if ( ! is_numeric( $args['height'] ) ) {
-		throw new Exception( esc_html__( 'Height must be an integer', '_s' ) );
+		throw new Exception( esc_html__( 'Height must be an integer', 'lavander' ) );
 	}
 
 	// Set up the url to the image.
@@ -199,7 +199,7 @@ function _s_get_placeholder_unsplash( $args = array() ) {
 	}
 
 	// Text that will be utilized by screen readers.
-	$alt = apply_filters( '_s_placeholder_image_alt', esc_html__( 'WebDevStudios Placeholder Image', '_s' ) );
+	$alt = apply_filters( 'lavander_placeholder_image_alt', esc_html__( 'WebDevStudios Placeholder Image', 'lavander' ) );
 
 	return "<img src='$url' width='{$args['width']}' height='{$args['height']}' alt='$alt' />";
 }
