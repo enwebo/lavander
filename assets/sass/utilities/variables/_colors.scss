@@ -14,13 +14,13 @@
 // COLORS
 
 // Primary palette
-$color-blue: #20739A;
-$color-light-yellow: #fff9c0;
+$color-gray-asparagus: #4b534b;
+$color-olivine: #a0be88;
 $color-black: #000;
 $color-white: #fff;
 
 // Grayscale
-$color-gray: #808080;
+$color-gray: #808580;
 $color-cod-gray: #111;
 $color-mineshaft: #333;
 $color-tundora: #454545;
@@ -68,13 +68,13 @@ $social-colors: (
 $color-background-body: $color-white;
 $color-text-main: $color-cod-gray;
 $color-background-hr: $color-silver;
-$color-border-abbr: $color-dove-gray;
+$color-border-abbr: $color-olivine;
 
 // Accessibility
 $color-background-screen-reader: $color-whitesmoke;
-$color-text-screen-reader: $color-blue;
+$color-text-screen-reader: $color-gray-asparagus;
 
 // Links
-$color-link: $color-blue;
-$color-link-visited: $color-blue;
-$color-link-hover: $color-blue;
+$color-link: $color-gray-asparagus;
+$color-link-visited: $color-gray-asparagus;
+$color-link-hover: $color-gray-asparagus;
