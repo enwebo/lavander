@@ -26,7 +26,7 @@ function lavander_font_url() {
 		$font_families = array();
 
 		if ( 'off' !== $roboto ) {
-			$font_families[] = 'Raleway:400,600';
+			$font_families[] = 'Raleway:400,600,700,800,900';
 		}
 
 		if ( 'off' !== $pt_sans ) {

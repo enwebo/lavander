@@ -192,11 +192,12 @@ a {
 	flex-wrap: wrap;
 	justify-content: center;
 	margin: 0 auto;
+	margin-top: rem(150);
 	z-index: 9;
 	white-space: nowrap;
 
 	.menu-more & {
-		white-space: auto;
+		white-space: initial;
 		height: auto;
 	}
 
